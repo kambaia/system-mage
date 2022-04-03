@@ -1,10 +1,20 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import * as C from "./styles";
 import { MdAlternateEmail } from "react-icons/md";
 import { VscLock } from "react-icons/vsc";
+import { useForm } from 'react-hook-form';
+import { AuthContext} from '../../contexts/AuthContext'
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+const { signIn } = useContext(AuthContext);
+  const { register, handleSubmit} = useForm();
+
+
+  const handleSignIn = async(data)=>{
+	const result = await signIn(data);
+  }
+
   return (
     <C.Container>
       <section className="right">
@@ -24,7 +34,7 @@ export default function Login() {
       </section>
       <section className="left">
         <div className="content-form">
-          <form>
+          <form onSubmit={handleSubmit(handleSignIn)}>
             <div>
               <h3>Faça login com sua conta PIA</h3>
             
@@ -35,6 +45,7 @@ export default function Login() {
                 <input
                   type="text"
                   placeholder="E-mail"
+				  {...register("email")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -47,6 +58,7 @@ export default function Login() {
                 <input
                   type="password"
                   placeholder="Senha"
+				  {...register("password")}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />

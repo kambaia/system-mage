@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import Prismic from '@prismicio/client';
 import { useEffect } from 'react';
 import Aos from 'aos';
@@ -44,4 +44,10 @@ export default function Home({ projetos }: HomeProps) {
            <Login/>
     </HomeContainer>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async()=>{
+	return {
+		props: { }
+	};
 }
