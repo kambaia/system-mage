@@ -1,5 +1,5 @@
-const URL_BASE = "https://pia-rest.herokuapp.com/api";
-//const URL_BASE = "http://localhost:8000/api";
+//const URL_BASE = "https://pia-rest.herokuapp.com/api";
+const URL_BASE = "http://localhost:8000/api";
 
 const URL_ROLES= `${URL_BASE}/roles`;
 const URL_USER = `${URL_BASE}/user`;

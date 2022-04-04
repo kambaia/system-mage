@@ -3,16 +3,31 @@ import * as C from "./styles";
 import { MdAlternateEmail } from "react-icons/md";
 import { VscLock } from "react-icons/vsc";
 import { useForm } from 'react-hook-form';
-import { AuthContext} from '../../contexts/AuthContext'
+import { AuthContext} from '../../contexts/AuthContext';
+import { setCookie } from "../../util/cookies";
+
+import router, {useRouter} from 'next/router';
+import { signInRequest } from "../../services/apiUsers";
+
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [errorMsg, setErrorMsg] = useState<string>("");
 const { signIn } = useContext(AuthContext);
   const { register, handleSubmit} = useForm();
 
 
   const handleSignIn = async(data)=>{
-	const result = await signIn(data);
+    const { email, password }= data;
+    const  resp:any = await signInRequest(email, password);
+    console.log(resp)
+    if(resp.token){
+      setCookie("token", resp.token);
+      router.push('/private')
+    }else{
+      setErrorMsg(resp.message)
+    }
+   
   }
 
   return (
@@ -63,7 +78,9 @@ const { signIn } = useContext(AuthContext);
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-
+              <div style={{textAlign: 'center'}}>
+                 { errorMsg&& (<span style={{color: '#d00', }}>{errorMsg}r</span>)}
+                </div>
               <div className="b-acess">
                 <button type="submit">Iniciar sessão</button>
                 <a href="#">Não sabes a tua palavra pass?</a>

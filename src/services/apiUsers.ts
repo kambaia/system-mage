@@ -1,6 +1,6 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from 'axios';
 import { URL_ACESS, URL_ACESS_SCHOOL } from "../utils/endpoints";
-
+import { http } from "..//util/http";
 export function signInRequest(email: string, password: string) {
   return new Promise(async function (resolve, reject) {
     try {
@@ -12,7 +12,7 @@ export function signInRequest(email: string, password: string) {
         },
         data: { email, password },
       };
-      const response = await axios(config);
+      const response = await http(config);
       resolve(response.data);
     } catch (error) {
       console.log("ERRO: ", error);
