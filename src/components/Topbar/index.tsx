@@ -4,11 +4,8 @@ import { CgMenu } from "react-icons/cg";
 import userLogo from "../../assets/users/client5.png";
 import { FaBell, FaEnvelopeOpenText } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth/useAuth";
-
+import Link from 'next/link';
 export const TopBar = () => {
-  const { logout, user, schoolAccess} = useAuth();
   //const navigate = useNavigate();
   // let toggle = document.querySelector(".toggle");
   // let navigation = document.querySelector(".navigation");
@@ -26,28 +23,28 @@ export const TopBar = () => {
         </div>
         <div className="search">
           <label>
-            <input name="nome" placeholder="pesquisa" />
+            <input name="nome" placeholder="Pesquisa" />
           </label>
         </div>
       </div>
       <C.MenusLeft>
         <div className="user">
           <img src={userLogo} alt="user" />
-          <span>{schoolAccess?.shoolRepresentative.userName}</span>
+          <span>K.A</span>
         </div>
         <div className="menus-left">
           <span>
-            <Link to="#" className="link">
+            <Link as={'/notes'} href="/home">
               <FaEnvelopeOpenText className="icons"/>
             </Link>
           </span>
           <span>
-            <Link to="#" className="link">
+		  <Link as={'/notes'} href="/home">
               <FaBell  className="icons"/>
             </Link>
           </span>
-          <span onClick={()=>logout()}>
-            <Link to="#" className="link">
+          <span>
+		  <Link as={'/notes'} href="/home">
               <FiLogOut  className="icons" />
             </Link>
           </span>

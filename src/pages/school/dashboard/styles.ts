@@ -1,11 +1,14 @@
 import styled from 'styled-components'
 export const WrapperBody = styled.div`
-  width: 99%;
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   align-content: center;
-  flex: 1;
+  width: 100%;
+  padding: 5px;
+  background-color: #fff;
+  width: 99%;
+
   .table {
     -webkit-box-shadow: 0px 0px 11px -1px #ddd;
     box-shadow: 0px 0px 11px -1px #ddd;
@@ -63,7 +66,7 @@ export const WrapperBody = styled.div`
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: left;
-      background-color: var(--blue);
+	  background: ${({ theme }) => theme.backgroundBlue};
       color: white;
     }
   }

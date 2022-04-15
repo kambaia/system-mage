@@ -10,7 +10,7 @@ export const Container = styled.nav`
   padding: 20px 10px;
   padding-right: 30px;
   border-bottom: 1px solid #ddd;
-  width: calc(100% - 320px);
+  width: calc(100% - 300px);
   left: 300px;
  
 
@@ -40,8 +40,14 @@ export const Container = styled.nav`
 
   .search {
     position: relative;
-    margin-left: 250px;
-
+    margin-left: 10px;
+	border: 1px solid #ddd;
+	width: 80%;
+	margin:auto;
+	border-radius: 40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
   }
   .search label {
     width: 100%;
@@ -49,14 +55,14 @@ export const Container = styled.nav`
   }
 
   .search label input {
-    width: 100%;
+    width: 90%;
     border-radius: 40px;
     font-size: 18px;
     border: 1px solid var(--black3);
     outline: none;
     padding: 10px;
     padding-left:20px;
-    width: 350px;
+
   }
 
   .search label ion-icon {
@@ -70,7 +76,7 @@ export const Container = styled.nav`
       display: flex;
       align-items: center;
       width: 100px;
-      border: 1px solid var(--blue);
+      border: 1px solid ${({ theme }) => theme.backgroundBlue};
       border-radius: 50px;
       padding:2px 10px;
       span{
@@ -98,22 +104,22 @@ export const MenusLeft = styled.div`
     align-items: center;
     span{
       margin-left: 20px;
-        background-color: var(--white);
+        background-color: ${({ theme }) => theme.backgroundBlue};
         border-radius: 50%;
         height: 30px;
         width: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
-      a {
-        padding: 5px;
-       
+		cursor: pointer;
+		:hover{
+			color: ${({ theme }) => theme.backgroundBlue};
+		}
         .icons{
           font-size:18px;
-          padding: 8px;
-          color: #287bff;
+          color: ${({ theme }) => theme.backgroundLight};
         }
-      }
+      
     }
   }
 

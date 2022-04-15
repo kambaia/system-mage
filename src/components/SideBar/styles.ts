@@ -3,11 +3,13 @@ import styled from "styled-components";
 export const Container = styled.nav`
   position: fixed;
   height: 100%;
-  background: var(--blue);
-  border-left: 10px solid var(--blue);
+  background: ${({ theme }) => theme.backgroundBlue};
+  border-left: 10px solid ${({ theme }) => theme.backgroundBlue};
   transition: 0.5s;
   overflow: hidden;
   width: 300px;
+  background: ${({ theme }) => theme.backgroundBlue};
+  z-index: 999;
 
   .logo {
     display: flex;
@@ -30,6 +32,7 @@ export const Container = styled.nav`
     height: 65vh;
     overflow-x: hidden;
     overflow-y: auto;
+	padding: 10px 15px;
     ::-webkit-scrollbar {
       width: 4px;
     }
@@ -69,7 +72,13 @@ export const Container = styled.nav`
     border-bottom-left-radius: 30px;
   }
   ul li:hover {
-    background-color: var(--white);
+	background: ${({ theme }) => theme.backgroundLight};
+	.color-icon{
+	 color: ${({ theme }) => theme.backgroundBlue}
+	}
+     span{
+		color: ${({ theme }) => theme.backgroundBlue}
+	}
   }
 
   .primary-nav {
@@ -83,7 +92,7 @@ export const Container = styled.nav`
     display: block;
     display: flex;
     text-decoration: none;
-    color: var(--white);
+	color: ${({ theme }) => theme.backgroundLight};
   }
   ul li:hover a {
     color: var(--blue);
@@ -95,6 +104,9 @@ export const Container = styled.nav`
     height: 60px;
     line-height: 70px;
     text-align: center;
+  }
+  ul li .color-icon{
+	color: ${({ theme }) => theme.backgroundLight};
   }
   ul li a .title {
     position: relative;
@@ -116,7 +128,7 @@ export const Container = styled.nav`
     height: 50px;
     background: transparent;
     border-radius: 50%;
-    box-shadow: 35px 35px 0px 10px var(--white);
+    box-shadow: 35px 35px 0px 10px ${({ theme }) => theme.backgroundLight};
     pointer-events: none;
   }
 
@@ -129,7 +141,7 @@ export const Container = styled.nav`
     height: 50px;
     background: transparent;
     border-radius: 50%;
-    box-shadow: 35px 35px 0px 10px var(--white);
+    box-shadow: 35px 35px 0px 10px ${({ theme }) => theme.backgroundLight};
     pointer-events: none;
   }
 
@@ -168,7 +180,7 @@ export const Container = styled.nav`
     color: #0c0d0d;
     right: 12px;
     outline: none;
-    color: var(--blue);
+    color: ${({ theme }) => theme.backgroundBlue};
   }
   .checkbox-input {
     position: absolute;
@@ -178,10 +190,12 @@ export const Container = styled.nav`
     border: none;
     z-index: 2;
     -webkit-appearance: none;
+	
 
     :focus {
       outline: none;
       border: none;
+	  
     }
   }
   .checkbox label {

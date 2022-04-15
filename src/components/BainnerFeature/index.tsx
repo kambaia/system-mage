@@ -3,7 +3,6 @@ import { FeatureContainer } from './styles'
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 import { GiMoneyStack } from 'react-icons/gi'
 import * as FaIcon from "react-icons/fa";
-import * as AiIcon from "react-icons/ai";
 
 const BainnerFeature: React.FC = () => {
   return (
@@ -11,7 +10,7 @@ const BainnerFeature: React.FC = () => {
 
 <div className="feature-items">
         <div className="feature-head">
-          <span className="feature-title">Total de funcionarios</span>
+          <span className="feature-title">Total FUNC...</span>
           <span>
             <FaIcon.FaRestroom className="icons" />
           </span>
@@ -31,7 +30,7 @@ const BainnerFeature: React.FC = () => {
 
 	  <div className="feature-items">
         <div className="feature-head">
-          <span className="feature-title">Total de estudantes</span>
+          <span className="feature-title">TOTAL DE ALUNOS</span>
           <span>
             <FaIcon.FaUserGraduate className="icons" />
           </span>
@@ -50,7 +49,7 @@ const BainnerFeature: React.FC = () => {
 
 	  <div className="feature-items">
         <div className="feature-head">
-          <span className="feature-title">Total de Professores</span>
+          <span className="feature-title">TOTAL DE PROFS...</span>
           <span>
             <FaIcon.FaChalkboardTeacher className="icons" />
           </span>
@@ -95,7 +94,7 @@ const BainnerFeature: React.FC = () => {
           </span>
         </div>
         <div className="feature-money-container">
-          <span className="feature-money">98.399.291,09 Kz</span>
+          <span className="feature-money">9.399.291,09 Kz</span>
         </div>
         <div className='percentage'>
 		<span className="feature-sub">Cresceu mais de </span>

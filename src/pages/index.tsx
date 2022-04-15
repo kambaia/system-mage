@@ -3,8 +3,6 @@ import Prismic from '@prismicio/client';
 import { useEffect } from 'react';
 import Aos from 'aos';
 import Head from 'next/head';
-import { HomeContainer } from '../styles/HomeStyles';
-import 'aos/dist/aos.css';
 import Login from './login';
 
 interface IProjeto {
@@ -25,7 +23,7 @@ export default function Home({ projetos }: HomeProps) {
     Aos.init({ duration: 1500 });
   }, []);
   return (
-    <HomeContainer>
+    <>
       <Head>
         <title>Home | Meu portfólio</title>
         <meta
@@ -42,7 +40,7 @@ export default function Home({ projetos }: HomeProps) {
         />
       </Head>
            <Login/>
-    </HomeContainer>
+    </>
   );
 }
 
