@@ -1,1 +1,1 @@
-export * from './dasboard';
+export * from '../dasboard';
