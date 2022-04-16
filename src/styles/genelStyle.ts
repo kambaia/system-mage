@@ -37,6 +37,12 @@ export const MainContent= styled.section`
   height: 100vh;
   overflow: auto;
   width: calc(100% - 300);
+
+  @media(max-width:1024px) {
+	width: calc(100% - 0px);
+    left: 0px;
+    }
+
   .active{
     width: calc(100% - 30px);
     left: 300px;

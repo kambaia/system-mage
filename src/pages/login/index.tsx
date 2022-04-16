@@ -39,7 +39,7 @@ const { signIn } = useContext(AuthContext);
               <img className="logo-img" src="/logo.svg" />
             </div>
             <span className="logo-title">Pagamentos Instituicional Angola</span>
-            <p>
+            <p className="">
               Receba transições em tempo real, dos seus encarregados e alunos. E
               Mas envie convocatórias para todos os encarregados sem gastar
               dinheiro de papel, facíl, seguro e rápido.
@@ -48,8 +48,8 @@ const { signIn } = useContext(AuthContext);
         </div>
       </section>
       <section className="left">
-        <div className="content-form">
-          <form onSubmit={handleSubmit(handleSignIn)}>
+        <div className="content-form bg-black">
+          <form onSubmit={handleSubmit(handleSignIn) }>
             <div>
               <h3>Faça login com sua conta PIA</h3>
             

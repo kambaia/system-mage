@@ -14,36 +14,17 @@ export default function UsersPanel() {
 				<Tabs className="wrapper">
 					<TabList className="tab-item">
 						<Tab className="item">Listar Todos os Usuários</Tab>
-						<Tab className="item">Professore</Tab>
-						<Tab className="item">Funcionários</Tab>
-						<Tab className="item">Estudantes</Tab>
+						
 						{/* <Tab>Rascunhos</Tab> */}
 					</TabList>
 					<TabPanel className="content">
 						<C.WrapperBody>
-							<ListPanel />
+							<ListPanel/>
 						</C.WrapperBody>
 
 					</TabPanel >
-					<TabPanel className="content">
-						<span>Sem informação disponível de professor</span>
-					</TabPanel>
-					<TabPanel className="content">
-						<span>Sem informação disponível Funcionários
-						</span>
-					</TabPanel>
-					<TabPanel className="content">
-						<span>Sem informação disponível Gráficos Estudantil</span>
-					</TabPanel>
-					<TabPanel className="content">
-						<span>Sem informação disponível Gráficos Monetário</span>
-					</TabPanel>
-					<TabPanel className="content">
-						<span>Sem informação disponível de Definições</span>
-					</TabPanel>
-					{/* <TabPanel>
-					<span>Sem informação disponível</span>
-				</TabPanel> */}
+					
+
 				</Tabs>
 			</C.WrapperContent>
 		</Layout>

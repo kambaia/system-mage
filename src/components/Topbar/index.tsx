@@ -50,6 +50,19 @@ export const TopBar = () => {
           </span>
         </div>
       </C.MenusLeft>
+	  <C.MenuMobile>
+        <div className="user">
+          <img src={userLogo} alt="user" />
+          <span>K.A</span>
+        </div>
+        <div className="menus-left">
+          <span>
+		  <Link as={'/notes'} href="/home">
+              <FiLogOut  className="icons" />
+            </Link>
+          </span>
+        </div>
+      </C.MenuMobile>
     </C.Container>
   );
 };

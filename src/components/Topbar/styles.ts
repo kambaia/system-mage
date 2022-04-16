@@ -12,6 +12,12 @@ export const Container = styled.nav`
   border-bottom: 1px solid #ddd;
   width: calc(100% - 300px);
   left: 300px;
+
+  @media(max-width:1024px) {
+	width: calc(100% - 0px);
+    left: 0px;
+    }
+
  
 
   background: #fff;
@@ -99,6 +105,11 @@ export const MenusLeft = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1;
+
+  @media(max-width:1024px) {
+	display: none;
+    }
+
   .menus-left{
     display: flex;
     align-items: center;
@@ -122,5 +133,46 @@ export const MenusLeft = styled.div`
       
     }
   }
+
+  
+
+`
+
+export const MenuMobile = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  display: none;
+
+  @media(max-width:1024px) {
+	display: flex;
+    }
+
+  .menus-left{
+    display: flex;
+    align-items: center;
+    span{
+      margin-left: 20px;
+        background-color: ${({ theme }) => theme.backgroundBlue};
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+		cursor: pointer;
+		:hover{
+			color: ${({ theme }) => theme.backgroundBlue};
+		}
+        .icons{
+          font-size:18px;
+          color: ${({ theme }) => theme.backgroundLight};
+        }
+      
+    }
+  }
+
+  
 
 `

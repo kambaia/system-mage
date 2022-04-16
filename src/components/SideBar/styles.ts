@@ -71,6 +71,21 @@ export const Container = styled.nav`
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
   }
+  ul .active{
+	background: ${({ theme }) => theme.backgroundLight}; 
+	position: relative;
+    width: 200%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+	background: ${({ theme }) => theme.backgroundLight};
+	.color-icon{
+	 color: ${({ theme }) => theme.backgroundBlue}
+	}
+     span{
+		color: ${({ theme }) => theme.backgroundBlue}
+	}
+  }
   ul li:hover {
 	background: ${({ theme }) => theme.backgroundLight};
 	.color-icon{
@@ -91,6 +106,8 @@ export const Container = styled.nav`
     width: 100%;
     display: block;
     display: flex;
+	display: flex;
+	  align-items: center;
     text-decoration: none;
 	color: ${({ theme }) => theme.backgroundLight};
   }
@@ -104,6 +121,9 @@ export const Container = styled.nav`
     height: 60px;
     line-height: 70px;
     text-align: center;
+	display: flex;
+	align-items: center;
+	padding: 0 10px;
   }
   ul li .color-icon{
 	color: ${({ theme }) => theme.backgroundLight};

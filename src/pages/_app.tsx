@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import NextNprogress from 'nextjs-progressbar';
+import "../../styles/globals.css";
 
 import { Toaster } from 'react-hot-toast';
 import GlobalStyles from '../styles/global';

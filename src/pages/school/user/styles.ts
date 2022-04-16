@@ -46,5 +46,10 @@ export const WrapperContent = styled.div`
   padding: 5px;
   background-color: #fff;
   width: 99%;
+
+  .border{
+	  border: none;
+	  background-color: #f00;
+  }
 `
 
