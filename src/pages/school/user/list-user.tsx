@@ -4,109 +4,152 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
-const columns = [
-  {
-    title: "Código de rastreio",
-    dataIndex: "tracking_number",
-    key: "tracking_number",
-    align: "center",
-    width: 150,
-    render: (tracking_number: string) => (
-      <span className="uppercase ">#{tracking_number?.slice(-5)}</span>
-    ),
-  },
-  {
-    title: "Código de rastreio",
-    dataIndex: "tracking_number",
-    key: "tracking_number",
-    align: "center",
-    width: 150,
-    render: (tracking_number: string) => (
-      <span className="uppercase ">#{tracking_number?.slice(-5)}</span>
-    ),
-  },
-  {
-    title: "Código de rastreio",
-    dataIndex: "tracking_number",
-    key: "tracking_number",
-    align: "center",
-    width: 150,
-    render: (tracking_number: string) => (
-      <span className="uppercase ">#{tracking_number?.slice(-5)}</span>
-    ),
-  },
-  {
-    title: "Código de rastreio",
-    dataIndex: "tracking_number",
-    key: "tracking_number",
-    align: "center",
-    width: 150,
-    render: (tracking_number: string) => (
-      <span className="uppercase ">#{tracking_number?.slice(-5)}</span>
-    ),
-  },
-  {
-    title: "Código de rastreio",
-    dataIndex: "tracking_number",
-    key: "tracking_number",
-    align: "center",
-    width: 150,
-    render: (tracking_number: string) => (
-      <span className="uppercase ">#{tracking_number?.slice(-5)}</span>
-    ),
-  },
-  {
-    title: "Código de rastreio",
-    dataIndex: "tracking_number",
-    key: "tracking_number",
-    align: "center",
-    width: 150,
-    render: (tracking_number: string) => (
-      <span className="uppercase ">#{tracking_number?.slice(-5)}</span>
-    ),
-  },
-  {
-    title: "Data do Pedido",
-    dataIndex: "created_at",
-    key: "created_at",
-    align: "center",
-    render: (date: string) => {
-      dayjs.extend(relativeTime);
-      dayjs.extend(utc);
-      dayjs.extend(timezone);
-      return (
-        <span className="whitespace-nowrap">
-          {dayjs.utc(date).tz(dayjs.tz.guess()).fromNow()}
-        </span>
-      );
-    },
-  },
-  
-];
+const ListPanel = () => {
+	return (
+		<>
+			<div className="w-full p-1 h-screen bg-gray-100">
+				<h1 className="text-xl mb-4">Listagem de Contas dos Funciónarios</h1>
 
-type IProps = {
-  orders: [];
-  title?: string;
-};
+				<div className="overflow-auto rounded-lg shadow hidden md:block">
+					<table className="w-full border-collapse border border-slate-400">
+						<thead className="bg-gray-50 border-b-2 ">
+							<tr>
+								<th className="w-20 p-3 text-sm font-semibold tracking-wide text-left">Id</th>
+								<th className="p-3 text-sm font-semibold tracking-wide text-left">Foto</th>
+								<th className="p-3 text-sm font-semibold tracking-wide text-left">Nome</th>
+								<th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">Email</th>
+								<th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">Telefone</th>
+								<th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">Função</th>
+								<th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">data c</th>
+								<th className="w-32 p-3 text-sm font-semibold tracking-wide text-center">Ações</th>
+							</tr>
+						</thead>
+						<tbody className="divide-y divide-gray-100">
+						<tr className="bg-white border-btransition duration-300 ease-in-out hover:bg-gray-100">
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									1
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap hover:bg-gray-100">
+								Maria José Alberto
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+								mariajose@gmail.com
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									938288211
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									<span
+										className="p-1.5 text-xs font-medium uppercase tracking-wide">Direitora</span>
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">20-10-2022</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">Editar remover</td>
+							</tr>
+							<tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-slate-300">
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									<a href="#" className="font-bold text-blue-500 hover:underline">2</a>
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									Marculino Fernando Abel
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									marculinoalbel@gmail.com
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+								    913288211
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									<span
+										className="p-1.5 text-xs font-medium uppercase tracking-wider">Tesoureiro</span>
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap"></td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">16-10-2021</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">Editar remover</td>
+							</tr>
+							<tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-slate-300">
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									<a href="#" className="font-bold text-blue-500 hover:underline">2</a>
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+								Mateus Lucambo
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+								mateuslucambo@gmail.com
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+								    913288211
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+									<span
+										className="p-1.5 text-xs font-medium uppercase tracking-wider rounded-lg">Direitor academico</span>
+								</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">Restrito</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">16-10-2021</td>
+								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">Editar remover</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-const ListPanel = ({ orders, title }: IProps) => {
-  return (
-    <>
-      <div className="w-full rounded overflow-hidden shadow mb-6">
-        <h3 className="text-heading text-center font-semibold px-4 py-3 bg-white border-b border-gray-200">
-          {title}
-        </h3>
-        <Table
-		
-          //@ts-ignore
-          columns={columns}
-          data={orders}
-          rowKey="id"
-          scroll={{ x: 700 }}
-        />
-      </div>
-    </>
-  );
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+					<div className="bg-white space-y-3 p-4 rounded-lg shadow">
+						<div className="flex items-center space-x-2 text-sm">
+							<div>
+								<a href="#" className="text-blue-500 font-bold hover:underline">1</a>
+							</div>
+							<div className="text-gray-500">Geral</div>
+							<div>
+								<span
+									className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">20-10-2022</span>
+							</div>
+						</div>
+						<div className="text-sm text-gray-700">
+						<span className="font-medium text-black">Nome</span>: 	Maria José Alberto
+						</div>
+						<div className="text-sm">
+						<span className="font-medium text-black">Email</span>: 	mariajose@gmail.com
+						</div>
+					</div>
+					<div className="bg-white space-y-3 p-4 rounded-lg shadow">
+						<div className="flex items-center space-x-2 text-sm">
+							<div>
+								<a href="#" className="text-blue-500 font-bold hover:underline">2</a>
+							</div>
+							<div className="text-gray-500">Restrito</div>
+							<div>
+								<span
+									className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">16-10-2021</span>
+							</div>
+						</div>
+						<div className="text-sm text-gray-700">
+						<span className="font-medium text-black">Nome</span>: Marculino Fernando Abel
+						</div>
+						<div className="text-sm">
+						<span className="font-medium text-black">Email</span>: Francisco@gmail.com
+						</div>
+					</div>
+					<div className="bg-white space-y-3 p-4 rounded-lg shadow">
+						<div className="flex items-center space-x-2 text-sm">
+							<div>
+								<a href="#" className="text-blue-500 font-bold hover:underline">3</a>
+							</div>
+							<div className="text-gray-500">Restrito</div>
+							<div>
+								<span
+									className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">15-10-2021</span>
+							</div>
+						</div>
+						<div className="text-sm text-gray-700">
+						<span className="font-medium text-black">Nome</span>: Mateus Lucambo
+						</div>
+						<div className="text-sm">
+						<span className="font-medium text-black">Email</span>: mateuslucambo@gmail.com
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default ListPanel;

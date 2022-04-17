@@ -3,30 +3,17 @@ import * as C from "./styles";
 import { MdAlternateEmail } from "react-icons/md";
 import { VscLock } from "react-icons/vsc";
 import { useForm } from 'react-hook-form';
-import { AuthContext} from '../../contexts/AuthContext';
 import { setCookie } from "../../util/cookies";
 
 import router, {useRouter} from 'next/router';
-import { signInRequest } from "../../services/apiUsers";
-
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
-const { signIn } = useContext(AuthContext);
   const { register, handleSubmit} = useForm();
 
 
   const handleSignIn = async(data)=>{
-    const { email, password }= data;
-    const  resp:any = await signInRequest(email, password);
-    console.log(resp)
-    if(resp.token){
-      setCookie("token", resp.token);
-      router.push('/private')
-    }else{
-      setErrorMsg(resp.message)
-    }
    
   }
 

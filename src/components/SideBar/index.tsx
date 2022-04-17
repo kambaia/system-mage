@@ -26,7 +26,7 @@ export const SideBar: React.FC<{}> = () => {
 							</Link>
 						</li>
 						<li >
-							<Link as={'/school/customers'} href="/school/user">
+							<Link as={'/school/user'} href="/school/user">
 								<a href="#">
 									<span className="icon">
 										<FaIcon.FaUsers className="color-icon" />

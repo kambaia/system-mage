@@ -18,10 +18,7 @@ export default function UsersPanel() {
 						{/* <Tab>Rascunhos</Tab> */}
 					</TabList>
 					<TabPanel className="content">
-						<C.WrapperBody>
 							<ListPanel/>
-						</C.WrapperBody>
-
 					</TabPanel >
 					
 

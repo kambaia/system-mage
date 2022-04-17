@@ -30,6 +30,8 @@ module.exports = {
 			900: "var(--gossamer-900)",
 		  },
 		},
+
+	
   
 		textColor: {
 		  body: "#6B7280",
