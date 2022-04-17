@@ -29,7 +29,6 @@ export const WrapperContent = styled.div`
       background-color: #fff;
       background: #dee3e1;
       color: ${({ theme }) => theme.backgroundBlue};
-	  border-left:1px solid #fff;
 
       a {
         color: #555;
@@ -74,7 +73,7 @@ export const WrapperBody = styled.div`
 `;
 
 
-export const CardBody = styled.div`
+export const CardButton = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -82,7 +81,17 @@ export const CardBody = styled.div`
   justify-content: space-between;
   width: 100%;
   border-bottom: 2px solid ${({ theme }) => theme.backgroundBlue};
-  padding-bottom: 10px;
+  padding: 10px;
+ 
+  button {
+	background-color: ${({ theme }) => theme.backgroundBlue};
+	height: 40px;
+	opacity: 1;
+	:hover{
+		background-color: ${({ theme }) => theme.backgroundBlue};
+		opacity: 0.8;
+	}
+  }
 `;
 
 
@@ -93,6 +102,11 @@ export const CardGroup = styled.div`
   align-content: center;
   justify-content: flex-end;
   width: 100%;
+
+  .border {
+    border: none;
+	border: 1px solid #ddd;
+  }
 `;
 
 

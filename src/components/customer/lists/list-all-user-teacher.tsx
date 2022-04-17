@@ -3,12 +3,38 @@ import { Table } from "@components/ui/table";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import Input from "@components/ui/input";
+import Button from "@components/ui/button";
+import { CardButton, CardGroup } from "./styles";
+import Link from "next/link";
 
-const ListPanel = () => {
+export const ListAllTeacherUserPanel = () => {
 	return (
 		<>
 			<div className="w-full p-1 h-screen bg-gray-100">
-				<h1 className="text-xl mb-4">Listagem de Contas dos Funciónarios</h1>
+				<CardButton>
+					<h3 style={{ fontSize: '1.5em', paddingTop: '2em' }}>Listam de Todos Usuários Profesores</h3>
+					<Button>	<Link as={'/school/user/create'} href="/school/user/create">
+								<a>
+									<span className="icon">
+									</span>
+									<span className="title">Registrar</span>
+								</a>
+							</Link>
+						</Button>
+				</CardButton>
+
+
+				<div className="overflow-auto rounded-lg shadow hidden md:block">
+					<CardGroup>
+						<Input
+							variant="outline"
+							className="mb-5"
+							placeholder="Pesquisa aqui"
+						/>
+					</CardGroup>
+
+				</div>
 
 				<div className="overflow-auto rounded-lg shadow hidden md:block">
 					<table className="w-full border-collapse border border-slate-400">
@@ -25,15 +51,15 @@ const ListPanel = () => {
 							</tr>
 						</thead>
 						<tbody className="divide-y divide-gray-100">
-						<tr className="bg-white border-btransition duration-300 ease-in-out hover:bg-gray-100">
+							<tr className="bg-white border-btransition duration-300 ease-in-out hover:bg-gray-100">
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
 									1
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap hover:bg-gray-100">
-								Maria José Alberto
+									Maria José Alberto
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-								mariajose@gmail.com
+									mariajose@gmail.com
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
 									938288211
@@ -56,7 +82,7 @@ const ListPanel = () => {
 									marculinoalbel@gmail.com
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-								    913288211
+									913288211
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
 									<span
@@ -71,13 +97,13 @@ const ListPanel = () => {
 									<a href="#" className="font-bold text-blue-500 hover:underline">2</a>
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-								Mateus Lucambo
+									Mateus Lucambo
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-								mateuslucambo@gmail.com
+									mateuslucambo@gmail.com
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-								    913288211
+									913288211
 								</td>
 								<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
 									<span
@@ -104,10 +130,10 @@ const ListPanel = () => {
 							</div>
 						</div>
 						<div className="text-sm text-gray-700">
-						<span className="font-medium text-black">Nome</span>: 	Maria José Alberto
+							<span className="font-medium text-black">Nome</span>: 	Maria José Alberto
 						</div>
 						<div className="text-sm">
-						<span className="font-medium text-black">Email</span>: 	mariajose@gmail.com
+							<span className="font-medium text-black">Email</span>: 	mariajose@gmail.com
 						</div>
 					</div>
 					<div className="bg-white space-y-3 p-4 rounded-lg shadow">
@@ -122,10 +148,10 @@ const ListPanel = () => {
 							</div>
 						</div>
 						<div className="text-sm text-gray-700">
-						<span className="font-medium text-black">Nome</span>: Marculino Fernando Abel
+							<span className="font-medium text-black">Nome</span>: Marculino Fernando Abel
 						</div>
 						<div className="text-sm">
-						<span className="font-medium text-black">Email</span>: Francisco@gmail.com
+							<span className="font-medium text-black">Email</span>: Francisco@gmail.com
 						</div>
 					</div>
 					<div className="bg-white space-y-3 p-4 rounded-lg shadow">
@@ -140,10 +166,10 @@ const ListPanel = () => {
 							</div>
 						</div>
 						<div className="text-sm text-gray-700">
-						<span className="font-medium text-black">Nome</span>: Mateus Lucambo
+							<span className="font-medium text-black">Nome</span>: Mateus Lucambo
 						</div>
 						<div className="text-sm">
-						<span className="font-medium text-black">Email</span>: mateuslucambo@gmail.com
+							<span className="font-medium text-black">Email</span>: mateuslucambo@gmail.com
 						</div>
 					</div>
 				</div>
@@ -152,6 +178,5 @@ const ListPanel = () => {
 	);
 };
 
-export default ListPanel;
 
 
