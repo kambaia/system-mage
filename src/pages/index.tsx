@@ -25,7 +25,7 @@ export default function Home({ projetos }: HomeProps) {
   return (
     <>
       <Head>
-        <title>Home | Meu portfólio</title>
+        <title>Sistema de Gestão PIA</title>
         <meta
           name="description"
           content="Sou um desenvolvedor Front-end e aqui apresento alguns projetos desenvolvidos por mim!"

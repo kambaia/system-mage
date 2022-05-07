@@ -88,6 +88,7 @@ export const Container = styled.nav`
   }
   ul li:hover {
 	background: ${({ theme }) => theme.backgroundLight};
+  opacity: .3;
 	.color-icon{
 	 color: ${({ theme }) => theme.backgroundBlue}
 	}

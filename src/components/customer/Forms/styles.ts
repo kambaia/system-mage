@@ -1,59 +1,13 @@
 import styled from 'styled-components';
 
 export const WrapperContent = styled.div`
-  width: 99%;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  flex: 1;
-  position: relative;
-
-  .wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 10px;
-
-    .tab-item {
-      display: flex;
-      outline: none;
+padding: 20px 0px;
+.input-selet{
+    font-size: "1.75rem";
+    :focus{
+      border:none;
     }
-    .item {
-      display: flex;
-      align-items: center;
-      padding: 15px;
-      outline: none;
-      cursor: pointer;
-      background-color: #fff;
-      background: #dee3e1;
-      color: ${({ theme }) => theme.backgroundBlue};
-
-      a {
-        color: #555;
-      }
-    }
-    .active {
-      padding: 10px;
-      outline: none;
-      cursor: pointer;
-      background-color: #fff;
-      border-bottom: 2px solid ${({ theme }) => theme.backgroundBlue};
-      background: #fff;
-	  border-top-left-radius: 10px;
-      a {
-        color: #555;
-      }
-    }
-    .content {
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-      width: 98%;
-      margin: auto;
-    }
-  }
+}
 `;
 
 export const WrapperBody = styled.div`
@@ -103,6 +57,18 @@ export const CardGroup = styled.div`
   .border {
     border: none;
 	border: 1px solid #ddd;
+  }
+
+`;
+
+
+export const InpuGroup = styled.div`
+display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  .input {
+    width: 48%;
   }
 `;
 

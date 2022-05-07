@@ -1,22 +1,72 @@
-import React, { useCallback, useContext, useState } from "react";
-import * as C from "./styles";
-import { MdAlternateEmail } from "react-icons/md";
-import { VscLock } from "react-icons/vsc";
+import React, { useCallback, useContext, useState } from 'react';
+import * as C from './styles';
+import { MdAlternateEmail } from 'react-icons/md';
+import { VscLock } from 'react-icons/vsc';
 import { useForm } from 'react-hook-form';
-import { setCookie } from "../../util/cookies";
+import { setCookie } from '../../util/cookies';
+import router, { useRouter } from 'next/router';
+import { useLoginMutation } from '@data/user/use-login.mutation';
+import Cookies from 'js-cookie';
+import { ROUTES } from '@utils/routes';
+import { SUPER_ADMIN } from '@utils/constants';
+import Button from '@components/ui/button';
 
-import router, {useRouter} from 'next/router';
+type FormValues = {
+  email: string;
+  password: string;
+};
+// const loginFormSchema = yup.object().shape({
+//   email: yup.string().email('Email is not valid').required('Email is required'),
+//   password: yup.string().required('Password is required')
+// });
+const defaultValues = {
+  email: '',
+  password: ''
+};
+
 export default function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [errorMsg, setErrorMsg] = useState<string>("");
-  const { register, handleSubmit} = useForm();
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorMsg, setErrorMsg] = useState<string>('');
 
+  const { mutate: login, isLoading: loading } = useLoginMutation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormValues>({
+    defaultValues
+  });
+  const router = useRouter();
 
-  const handleSignIn = async(data)=>{
-   
+  async function onSubmit({ email, password }: FormValues) {
+    login(
+      {
+        variables: {
+          email,
+          password
+        }
+      },
+      {
+        onSuccess: ({ data }: any) => {
+          if (data?.token) {
+            console.log(data);
+            console.log(data.data.role)
+            if (data.data.role.role=== SUPER_ADMIN) {
+             
+              Cookies.set('auth_token', data?.token);
+              Cookies.set('auth_permissions', data?.permissions);
+              router.push(ROUTES.DASHBOARD);
+            } else {
+              setErrorMsg('Não tem permissão suficiente');
+            }
+          } else {
+            setErrorMsg('As credenciais estavam erradas!');
+          }
+        }
+      }
+    );
   }
-
   return (
     <C.Container>
       <section className="right">
@@ -36,10 +86,10 @@ export default function Login() {
       </section>
       <section className="left">
         <div className="content-form bg-black">
-          <form onSubmit={handleSubmit(handleSignIn) }>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <h3>Faça login com sua conta PIA</h3>
-            
+
               <div className="groups-input">
                 <span className="icon">
                   <MdAlternateEmail />
@@ -47,9 +97,9 @@ export default function Login() {
                 <input
                   type="text"
                   placeholder="E-mail"
-				  {...register("email")}
+                  {...register('email')}
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                 />
               </div>
 
@@ -60,16 +110,19 @@ export default function Login() {
                 <input
                   type="password"
                   placeholder="Senha"
-				  {...register("password")}
+                  {...register('password')}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                 />
               </div>
-              <div style={{textAlign: 'center'}}>
-                 { errorMsg&& (<span style={{color: '#d00', }}>{errorMsg}r</span>)}
-                </div>
+              <div style={{ textAlign: 'center' }}>
+                {errorMsg && <span style={{ color: '#d00' }}>{errorMsg}r</span>}
+              </div>
               <div className="b-acess">
-                <button type="submit">Iniciar sessão</button>
+                <Button className="w-full" loading={loading} disabled={loading}>
+                  Entrar
+                </Button>
+
                 <a href="#">Não sabes a tua palavra pass?</a>
               </div>
             </div>
