@@ -15,7 +15,6 @@ export const WrapperBody = styled.div`
     padding: 20px;
     flex: 1;
     max-height: 400px;
-    background-color: var(--white);
     margin-top: 20px;
     border-radius: 10px;
     

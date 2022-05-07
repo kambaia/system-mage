@@ -6,6 +6,7 @@ export const FeatureContainer = styled.nav`
   flex-direction: row;
 
 
+
   /* Track */
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 2px grey;
@@ -30,7 +31,7 @@ export const FeatureContainer = styled.nav`
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 11px -1px #ddd;
     box-shadow: 0px 0px 11px -1px #ddd;
-	min-height: 180px;
+
     border: 2px solid #ddd;
     background: #fff;
   }
