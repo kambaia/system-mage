@@ -47,23 +47,25 @@ export default function Login() {
           password
         }
       },
-      {
-        onSuccess: ({ data }: any) => {
+	  {
+        onSuccess: ({ data }) => {
+			console.log(data);
+
           if (data?.token) {
-            console.log(data);
-            console.log(data.data.role)
-            if (data.data.role.role=== SUPER_ADMIN) {
-             
-              Cookies.set('auth_token', data?.token);
-              Cookies.set('auth_permissions', data?.permissions);
+            if (
+              data?.user.permissions?.length &&
+              data?.user.permissions.includes(SUPER_ADMIN)
+            ) {
+              Cookies.set("auth_token", data?.token);
+              Cookies.set("auth_permissions", data?.user.permissions);
               router.push(ROUTES.DASHBOARD);
             } else {
-              setErrorMsg('Não tem permissão suficiente');
+              setErrorMsg("Não tem permissão suficiente");
             }
           } else {
-            setErrorMsg('As credenciais estavam erradas!');
+            setErrorMsg("As credenciais estavam erradas!");
           }
-        }
+        },
       }
     );
   }

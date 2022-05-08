@@ -7,6 +7,12 @@ import * as C from "./styles";
 import UsersPanel from '../user';
 import Link from 'next/link';
 
+import { ROUTES } from '@utils/routes';
+import { SUPER_ADMIN } from '@utils/constants';
+import { GetServerSideProps } from "next";
+import { parseContextCookie } from "@utils/parse-cookie";
+import { isTokenExpired } from 'src/util/auth';
+
 export const Dasboard: React.FC = () => {
 	return (
 		<Layout>
@@ -80,3 +86,22 @@ export const Dasboard: React.FC = () => {
 };
 
 export default Dasboard;
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+	const cookies = parseContextCookie(context?.req?.headers?.cookie);
+	console.log(!cookies?.auth_token || isTokenExpired(cookies?.auth_token))
+	
+	if (!cookies?.auth_token || isTokenExpired(cookies?.auth_token)) {
+		console.log("Estou a entrar aqui")
+		if (cookies?.auth_permissions?.includes(SUPER_ADMIN)) {
+			return {
+				redirect: { destination: ROUTES.LOGIN, permanent: false },
+			};
+		}
+	}
+	
+	return {
+		props: {},
+	};
+};
+  

@@ -1,8 +1,6 @@
 export function isTokenExpired(token: string) {
   const payload = getPayload(token);
-
   const clockTimestamp = Math.floor(Date.now() / 1000);
-
   return clockTimestamp > payload.exp;
 }
 

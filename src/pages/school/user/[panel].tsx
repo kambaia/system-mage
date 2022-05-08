@@ -7,6 +7,11 @@ import {  ListAllUserPanel, ListAllStudentPanel, ListAllSystemUserPanel, ListAll
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { ROUTES } from '@utils/routes';
+import { SUPER_ADMIN } from '@utils/constants';
+import { GetServerSideProps } from "next";
+import { parseContextCookie } from "@utils/parse-cookie";
+
 export default function Panel() {
      
     const router = useRouter();
@@ -42,6 +47,26 @@ export default function Panel() {
 			</C.WrapperContent>
 		</Layout>
 	);
+};
+
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+	const cookies = parseContextCookie(context?.req?.headers?.cookie);
+
+
+	console.log(cookies?.auth_permissions?.includes(SUPER_ADMIN));
+	console.log("usuario");
+
+	if (cookies?.auth_token) {
+		if (!cookies?.auth_permissions?.includes(SUPER_ADMIN)) {
+			return {
+				redirect: { destination: ROUTES.DASHBOARD, permanent: false },
+			};
+		}
+	}
+	return {
+		props: {},
+	};
 };
 
 
