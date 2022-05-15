@@ -7,5 +7,6 @@ export const ROUTES = {
   TEACHER: "/school/teacher",
   REGISTRATIONANROL: "/school//registrationAnrol",
   PAYMENT: "/school/payment",
-  EMPLOYEE: "/school/employee"
+  EMPLOYEE: "/school/employee",
+  PROFILE: "/school/profile"
 };

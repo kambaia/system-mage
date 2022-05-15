@@ -1,15 +1,10 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import * as C from './styles';
 import { MdAlternateEmail } from 'react-icons/md';
 import { VscLock } from 'react-icons/vsc';
 import { useForm } from 'react-hook-form';
-import { setCookie } from '../../util/cookies';
-import router, { useRouter } from 'next/router';
-import { useLoginMutation } from '@data/user/use-login.mutation';
-import Cookies from 'js-cookie';
-import { ROUTES } from '@utils/routes';
-import { SUPER_ADMIN } from '@utils/constants';
 import Button from '@components/ui/button';
+import { AuthContext } from '@contexts/AuthContext';
 
 type FormValues = {
   email: string;
@@ -28,8 +23,8 @@ export default function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const { mutate: login, isLoading: loading } = useLoginMutation();
   const {
     register,
     handleSubmit,
@@ -37,37 +32,12 @@ export default function Login() {
   } = useForm<FormValues>({
     defaultValues
   });
-  const router = useRouter();
+  const { signIn } = useContext(AuthContext);
 
   async function onSubmit({ email, password }: FormValues) {
-    login(
-      {
-        variables: {
-          email,
-          password
-        }
-      },
-	  {
-        onSuccess: ({ data }) => {
-			console.log(data);
-
-          if (data?.token) {
-            if (
-              data?.user.permissions?.length &&
-              data?.user.permissions.includes(SUPER_ADMIN)
-            ) {
-              Cookies.set("auth_token", data?.token);
-              Cookies.set("auth_permissions", data?.user.permissions);
-              router.push(ROUTES.DASHBOARD);
-            } else {
-              setErrorMsg("Não tem permissão suficiente");
-            }
-          } else {
-            setErrorMsg("As credenciais estavam erradas!");
-          }
-        },
-      }
-    );
+    setLoading(true);
+    await signIn({ email, password });
+    setLoading(false);
   }
   return (
     <C.Container>

@@ -16,6 +16,10 @@ export default class Base<C, U> {
   find = async (url: string) => {
     return this.http(url, "get");
   };
+  findOne = async (url: string, idUser:string) => {
+    return this.http(`${url}/${idUser}` , "get");
+  };
+
 
   create = async (url: string, variables: C) => {
     return this.http<C>(url, "post", variables);

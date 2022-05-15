@@ -11,6 +11,7 @@ import { ROUTES } from '@utils/routes';
 import { SUPER_ADMIN } from '@utils/constants';
 import { GetServerSideProps } from "next";
 import { parseContextCookie } from "@utils/parse-cookie";
+import { isTokenExpired } from 'src/util/auth';
 
 export default function Panel() {
      
@@ -52,21 +53,19 @@ export default function Panel() {
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
 	const cookies = parseContextCookie(context?.req?.headers?.cookie);
-
-
-	console.log(cookies?.auth_permissions?.includes(SUPER_ADMIN));
-	console.log("usuario");
-
-	if (cookies?.auth_token) {
+	if (cookies?.auth_token  || !isTokenExpired(cookies?.auth_token)) {
 		if (!cookies?.auth_permissions?.includes(SUPER_ADMIN)) {
 			return {
 				redirect: { destination: ROUTES.DASHBOARD, permanent: false },
 			};
 		}
+    return {
+      props: {},
+    };
 	}
-	return {
-		props: {},
-	};
+  return {
+    redirect: { destination: "/login", permanent: false },
+  };
 };
 
 

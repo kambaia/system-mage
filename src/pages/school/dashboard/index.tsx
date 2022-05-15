@@ -2,18 +2,10 @@ import BainnerFeature from '../../../components/BainnerFeature';
 import React from 'react';
 import Layout from '../../../Layout';
 import { Chart } from "../../../components/Chart";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import * as C from "./styles";
-import UsersPanel from '../user';
-import Link from 'next/link';
-
-import { ROUTES } from '@utils/routes';
-import { SUPER_ADMIN } from '@utils/constants';
-import { GetServerSideProps } from "next";
-import { parseContextCookie } from "@utils/parse-cookie";
-import { isTokenExpired } from 'src/util/auth';
-
+import { withAuth } from 'src/pages/provider/AuthWith';
 export const Dasboard: React.FC = () => {
+
 	return (
 		<Layout>
 			<BainnerFeature />
@@ -87,21 +79,13 @@ export const Dasboard: React.FC = () => {
 
 export default Dasboard;
 
-export const getServerSideProps: GetServerSideProps = async (context: any) => {
-	const cookies = parseContextCookie(context?.req?.headers?.cookie);
-	console.log(!cookies?.auth_token || isTokenExpired(cookies?.auth_token))
-	
-	if (!cookies?.auth_token || isTokenExpired(cookies?.auth_token)) {
-		console.log("Estou a entrar aqui")
-		if (cookies?.auth_permissions?.includes(SUPER_ADMIN)) {
-			return {
-				redirect: { destination: ROUTES.LOGIN, permanent: false },
-			};
-		}
-	}
-	
-	return {
+
+
+export const getServerSideProps = withAuth(
+	async (ctx: any, cookies: any, payload: any) => {
+	  return {
 		props: {},
-	};
-};
+	  };
+	}
+  );
   

@@ -1,7 +1,6 @@
 
 import {TopBar} from "./../components/Topbar";
 import {SideBar} from "./../components/SideBar";
-import dynamic from "next/dynamic";
 import { useState } from "react";
 const Layout: React.FC = ({ children }) => {
 	const [menu, setMenu] = useState(true);

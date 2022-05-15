@@ -15,7 +15,8 @@ export const Container = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    flex-direction: column;
+    height: 25vh;
     padding: 20px 0;
     position: relative;
     width: 100%;
@@ -24,6 +25,11 @@ export const Container = styled.nav`
       width: 100px;
       height: 100px;
       border-radius: 50%;
+    }
+    h3{
+      padding-top:10px;
+      color: ${"#fff"};
+      font-weight: bold;
     }
   }
 

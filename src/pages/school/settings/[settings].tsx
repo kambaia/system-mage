@@ -6,11 +6,11 @@ import * as C from "./styles";
 import {  ListAllUserPanel, ListAllStudentPanel, ListAllSystemUserPanel, ListAllTeacherUserPanel} from '@components/customer/lists';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { withAuth } from 'src/hof/withAuth';
 
 export default function Panel() {
      
     const router = useRouter();
-    console.log(router.query.settings);
 	return (
 		<Layout>
 			<C.WrapperContent>
@@ -49,6 +49,14 @@ export default function Panel() {
 	);
 };
 
+export const getServerSideProps = withAuth(
+	async (ctx: any, cookies: any, payload: any) => {
+		console.log(ctx, "Mas alguma coisa?");
+		return {
+		props: {},
+	  };
+	}
+  );
 
 
 

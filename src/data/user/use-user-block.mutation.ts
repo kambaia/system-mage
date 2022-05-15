@@ -6,11 +6,12 @@ export const useBlockUserMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    (id: number) => User.block(API_ENDPOINTS.BLOCK_USER, { id }),
+    (id: number) => User.block(API_ENDPOINTS.USER, { id }),
     {
+      
       // Always refetch after error or success:
       onSettled: () => {
-        queryClient.invalidateQueries(API_ENDPOINTS.USERS);
+        queryClient.invalidateQueries(API_ENDPOINTS.USER);
       },
     }
   );

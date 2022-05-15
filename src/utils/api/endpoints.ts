@@ -1,5 +1,7 @@
 export const API_ENDPOINTS = {
   USERS: "users",
+  USER: "user",
+  EMPLOYEE: "employee",
   LOGOUT: "logout",
   SESSION: "session_school",
   ROLE: "roles",
