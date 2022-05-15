@@ -3,9 +3,9 @@ export const ROUTES = {
   LOGIN: "/",
   USER: "/school/user",
   SETTINGS: "/school/settings",
-  STUDENT: "/school//student",
+  STUDENT: "/school/student",
   TEACHER: "/school/teacher",
-  REGISTRATIONANROL: "/school//registrationAnrol",
+  REGISTRATIONANROL: "/school/registrationAnrol",
   PAYMENT: "/school/payment",
   EMPLOYEE: "/school/employee",
   PROFILE: "/school/profile"

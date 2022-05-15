@@ -25,6 +25,7 @@ export const ListAllUserProfile = () => {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
+  
   const handleFormUploadProfile = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Ficheior');

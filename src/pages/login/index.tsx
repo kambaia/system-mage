@@ -71,7 +71,6 @@ export default function Login() {
                   placeholder="E-mail"
                   {...register('email')}
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
                 />
               </div>
 
@@ -84,7 +83,6 @@ export default function Login() {
                   placeholder="Senha"
                   {...register('password')}
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
                 />
               </div>
               <div style={{ textAlign: 'center' }}>

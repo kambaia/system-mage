@@ -19,11 +19,6 @@ export const WrapperBody = styled.div`
   padding: 5px;
   background-color: #fff;
   width: 99%;
-
-  .border {
-    border: none;
-    background-color: #f00;
-  }
 `;
 
 
@@ -59,6 +54,10 @@ export const CardGroup = styled.div`
 	border: 1px solid #ddd;
   }
 
+  .suport-cardbody {
+    height: 480px;
+  }
+
 `;
 
 
@@ -66,10 +65,63 @@ export const InpuGroup = styled.div`
 display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-top: 15px;
 
   .input {
     width: 48%;
   }
-`;
 
+`;
+export const UploadUserProfileStyle = styled.div`
+ .user {
+    box-shadow: 0px 2px 5px #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+
+
+    .profile {
+      width: 140px;
+      height: 140px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+	  border: 1px dotted;
+      button{
+            cursor: pointer;  
+            background-color: green;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 4px;
+        }
+      .upload {
+        color: #1c6abd;
+        padding: 5px;
+        #file {
+          display: none;
+        }
+       
+        label {
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          span{
+              padding-left:5px;
+          }
+        }
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+`;
 
