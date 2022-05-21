@@ -1,0 +1,19 @@
+{
+  "firstName": {
+    "required": "O primeiro nome é um campo obrigatório"
+  },
+  "lastName": {
+    "required": "O seu sobrenome é um campo obrigatório"
+  },
+  "email": {
+    "required": "E-mail é um campo obrigatório",
+    "email": "O e-mail informado é inválido"
+  },
+  "phoneNumber": {
+	"required": "O número de celular informado é inválido"
+  }
+  "phoneNumber": {
+	"required": "O número de celular informado é inválido"
+  }
+
+}

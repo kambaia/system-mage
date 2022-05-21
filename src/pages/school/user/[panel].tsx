@@ -15,7 +15,7 @@ import { isTokenExpired } from 'src/util/auth';
 import { userListQuery } from '@data/user/use-me.query';
 import { AuthContext } from '@contexts/AuthContext';
 
-export default function Panel() {
+export default function UserPanel() {
 
     const router = useRouter();
 	return (

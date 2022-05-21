@@ -64,7 +64,7 @@ export const SideBar: React.FC<{}> = () => {
               ''
             )}
             <li className={asPath === ROUTES.EMPLOYEE ? 'active' : ''}>
-              <Link href={ROUTES.EMPLOYEE}>
+			<Link href={ROUTES.EMPLOYEE + '/1'}>
                 <a>
                   <span className="icon">
                     <AiIcon.AiOutlineUsergroupAdd className="color-icon" />

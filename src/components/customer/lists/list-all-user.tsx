@@ -1,6 +1,6 @@
 import Input from '../..//ui/input';
 import Button from '../..//ui/button';
-import { CardButton, CardGroup } from './styles';
+import { CardButton, CardGroup, ContentTable} from './styles';
 import Link from 'next/link';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { userListQuery } from '@data/user/use-me.query';
@@ -43,6 +43,7 @@ export const ListAllUserPanel = () => {
         </div>
 
         <div className="overflow-auto rounded-lg shadow hidden md:block">
+		<ContentTable>
           <table className="w-full border-collapse border border-slate-400">
             <thead className="bg-gray-50 border-b-2 ">
               <tr>
@@ -79,6 +80,7 @@ export const ListAllUserPanel = () => {
               {isLoading ? (
                 <Loader />
               ) : (
+				 
                 data?.map((items, index) => (
                   <tr className="bg-white border-btransition duration-300 ease-in-out hover:bg-gray-100">
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
@@ -117,6 +119,7 @@ export const ListAllUserPanel = () => {
               )}
             </tbody>
           </table>
+		  </ContentTable>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
