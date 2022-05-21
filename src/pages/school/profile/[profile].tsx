@@ -1,11 +1,9 @@
-import BainnerFeature from '../../../components/BainnerFeature';
 import React from 'react';
 import Layout from '../../../Layout';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import * as C from './styles';
 import {
 	ListAllSchoolProfile,
-  ListAllUserPanel,
   ListAllUserProfile
 } from '@components/customer/lists';
 import Link from 'next/link';

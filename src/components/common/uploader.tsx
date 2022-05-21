@@ -56,7 +56,6 @@ export default function Uploader({ setProfileSave, profile, setProfile }:Props) 
 							<div className="remove" onClick={()=>setProfile("")}>x</div>
 							<img className="h-40 flex items-center mt-2 ml-2" src={profile} alt="profile image" />
 						</div>
-						<button>Salvar o Image</button>
 					</WraaperUploa>
 			}
 		</>

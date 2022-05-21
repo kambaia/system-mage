@@ -14,6 +14,9 @@ class User extends Base<CreateUser, UpdateUser> {
   me = async (url: string) => {
     return this.http(url, "get");
   };
+  findAll = async (url: string) => {
+    return this.http(url, "get");
+  };
 
   login = async (url: string, variables: LoginInput) => {
     return this.http<LoginInput>(url, "post", variables);

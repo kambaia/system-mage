@@ -13,8 +13,8 @@ export default class Base<C, U> {
     return this.http(url, "get");
   };
 
-  find = async (url: string) => {
-    return this.http(url, "get");
+  find = async (url: string, idUser:string) => {
+    return this.http(`${url}/${idUser}` , "get");
   };
   findOne = async (url: string, idUser:string) => {
     return this.http(`${url}/${idUser}` , "get");

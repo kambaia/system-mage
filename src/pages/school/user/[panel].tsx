@@ -1,5 +1,5 @@
 import BainnerFeature from '../../../components/BainnerFeature';
-import React from 'react';
+import React, { useContext } from 'react';
 import Layout from '../../../Layout';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import * as C from "./styles";
@@ -8,15 +8,16 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { ROUTES } from '@utils/routes';
-import { SUPER_ADMIN } from '@utils/constants';
+import {SUPER_ADMIN } from '@utils/constants';
 import { GetServerSideProps } from "next";
 import { parseContextCookie } from "@utils/parse-cookie";
 import { isTokenExpired } from 'src/util/auth';
+import { userListQuery } from '@data/user/use-me.query';
+import { AuthContext } from '@contexts/AuthContext';
 
 export default function Panel() {
-     
+
     const router = useRouter();
-    console.log(router.query.panel);
 	return (
 		<Layout>
 			<C.WrapperContent>

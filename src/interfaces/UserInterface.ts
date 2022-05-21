@@ -1,21 +1,4 @@
 import { ISchool } from './SchoolInterface';
-export interface IUser{
-	_id:string;
-	profile:string;
-	email?: string;
-	userName:string,
-	firstName: string;
-	lastName: string;
-	password?: string;
-	gender?: Gender;
-	address?: Address;
-	contact?:Contact
-	phoneNumber?: string;
-	studentNumber?:string;
-	createdAt: Date;
-	updatedAt: Date;
-	active:boolean;
-}
 export enum Gender {
 	masculino = 'Masculino',
 	femenino = 'Femenino',
@@ -43,6 +26,5 @@ export interface Iaccess_level extends Document {
 
 export interface ILoggedUser{
 	expireIn: number;
-	user:IUser | null,
 	token: string
 }

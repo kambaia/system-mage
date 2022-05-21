@@ -38,22 +38,16 @@ export enum Gender {
 }
 
 
-export declare type User = {
+export declare type IUser = {
 	id: Scalars["ID"];
-	schoolId: Scalars["String"];
-	name: Scalars["String"];
 	userName: Scalars["String"];
 	email: Scalars["String"];
-	gender?: Scalars["String"];
-	firstName: Scalars["String"];
-	lastName: Scalars["String"];
+	fullName: Scalars["String"];
 	phoneNumber?: Scalars["String"];
-	roles: Scalars["String"];
-	permission: Scalars["String"];
-	created_at: Scalars["DateTime"];
-	updated_at: Scalars["DateTime"];
+    permission?: Roles;
+	createdAt: Scalars["DateTime"];
+	updatedAt: Scalars["DateTime"];
 	profile?: Maybe<Profile>;
-	address: Maybe<UserAddress>;
 };
 
 export declare type LoginUser = {
@@ -62,6 +56,7 @@ export declare type LoginUser = {
 	fullName: Scalars["String"];
 	userName: Scalars["String"];
 	email: Scalars["String"];
+	phoneNumber: Scalars["String"];
 	profile?: Maybe<Profile>;
 	permissions?: Roles;
 	school: SchoolAccess
@@ -89,13 +84,13 @@ export declare type IEmployee = {
 
 
 
-export declare type Roles = {
+export declare type permission = {
 		role: Scalars["String"];
 		type:  Scalars["String"];
 }
 
 export declare type SchoolAccess = {
-	idSchool: Scalars["String"];
+	_id: Scalars["String"];
     schoolCode:  Scalars["String"];
     schoolLogo: Scalars["String"];
     schoolName: Scalars["String"]
@@ -537,9 +532,13 @@ export declare type LoginInput = {
 export declare type RegisterInput = {
 	email: Scalars["String"];
 	password: Scalars["String"];
-	contact: Scalars["String"];
 	permission: Scalars["String"];
-	name: Scalars["String"];
+	userName: Scalars["String"];
+	profile?:Scalars["String"];
+	fullName: Scalars["String"];
+	phoneNumber?: Scalars["String"];
+	schoolId?:   Scalars["String"];
+	active:	Scalars["Boolean"];
 };
 
 export type ChangePasswordInput = {

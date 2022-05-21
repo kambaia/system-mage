@@ -1,17 +1,26 @@
 import User from "@repositories/user";
-import { useQuery } from "react-query";
-import {IEmployee,  Profile } from "@ts-types/generated";
+import { useMutation, useQuery } from "react-query";
+import {IEmployee,  Profile, IUser} from "@ts-types/generated";
 import { API_ENDPOINTS } from "@utils/api/endpoints";
 import { storage } from '../../../config/firebase';
-import { ref, listAll, getDownloadURL, uploadBytes} from 'firebase/storage';
+import { ref, getDownloadURL, uploadBytes} from 'firebase/storage';
 import { v4 as creadId } from 'uuid'
 export const fetchMe = async (id: string) => {
   const { data } = await User.findOne(API_ENDPOINTS.EMPLOYEE, id);
   return data;
 };
+export const fetcUsers = async (id: string) => {
+  const { data } = await User.find(API_ENDPOINTS.USERS, id);
+  return data;
+};
 
 export const useMeQuery = (idUser:string | undefined) => {
-  return useQuery<IEmployee, Error>([API_ENDPOINTS.USER], () => fetchMe(idUser!));
+  return useQuery<IEmployee, Error>([API_ENDPOINTS.USERS], () => fetchMe(idUser!));
+};
+
+
+export const userListQuery = (idUser:string | undefined) => {
+  return useQuery<IUser[], Error>([API_ENDPOINTS.USERS], () => fetcUsers(idUser!));
 };
 
 

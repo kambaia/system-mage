@@ -12,81 +12,108 @@ import {
   InpuGroup
 } from './styles';
 import { AuthContext } from '@contexts/AuthContext';
-import { UploadImage, useMeQuery } from '@data/user/use-me.query';
-import { AiOutlineUpload } from 'react-icons/ai';
+import { UploadImage } from '@data/user/use-me.query';
+import { useCreateUserMutation } from '@data/user/use-user-create.mutation';
+import { customerValidationSchema } from '../validate/customer-validation-schema';
 import Uploader from '@components/common/uploader';
 import { useForm } from 'react-hook-form';
 
 type FormValues = {
+  email: string;
+  password: string;
   firstName: string;
   lastName: string;
-  email: string;
-  contact: string;
-  password: string;
-  permissionType: string;
+  phoneNumber?: string;
 };
 const defaultValues = {
-	firstName: "",
-	lastName: "",
-	email: "",
-	contact: "",
-	password: "",
-	permissionType: "",
+  firstName: '',
+  lastName: '',
+  email: '',
+  phoneNumber: '',
+  password: '',
+  permission: ''
 };
 
 export const CustomerCreateForm = () => {
-  const options:any = [
-    { value: '1', label: 'Adiministrador de Sistema' },
+  const { mutate: registerUser, isLoading: loading } = useCreateUserMutation();
+  const {
+    register,
+    watch,
+    handleSubmit,
+    setError,
+
+    formState: { errors }
+  } = useForm<FormValues>({
+    defaultValues
+  });
+
+  const options: any = [
+    { value: '6287efb7ee7c139f17cd881c', label: 'Adiministrador de Sistema' },
     { value: '2', label: 'Direitor' },
     { value: '3', label: 'Secretário' },
-    { value: '4', label: 'Tesouraria' },
+    { value: '62880b2d7d0ae15fe4242691', label: 'Tesouraria' },
     { value: '5', label: 'Professor' },
     { value: '6', label: 'Estudante' }
   ];
 
   const { user } = useContext(AuthContext);
   const [profileSave, setProfileSave] = useState<File | null>(null);
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState('');
   const [uploading, setUploading] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [permisotin, setPermisotin] = useState( { value: '1', label:""});
-  
+  const [permisotin, setPermisotin] = useState({ value: '1', label: '' });
 
   const handleFormUploadProfile = async (profileSave: File) => {
-	console.log(profileSave)
     if (profileSave && profileSave.size > 0) {
       setUploading(true);
       const resp = await UploadImage(profileSave);
-      setUploading(true);
       if (resp instanceof Error) {
         alert(`${resp.message}`);
-        console.log(resp.message);
       } else {
-        console.log(resp.thumbnail);
+        return resp.thumbnail;
       }
+      setUploading(false);
     }
   };
 
-  const {
-    register,
-    handleSubmit,
-	reset,
-    formState: { errors }
-  } = useForm<FormValues>({
-    defaultValues
-  });
-
-  async function onSubmit(form: FormValues) {
-	form.permissionType = permisotin.label;
-    setLoading(true);
-    handleFormUploadProfile(profileSave!);
-    setLoading(false);
-    console.log(form);
-	reset(defaultValues);
-	setProfile("");
-	setPermisotin({value: "", label:""});
-	
-	
+  async function  onSubmit({
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    password
+  }: FormValues) {
+    if (!uploading) {
+      let thumbnail: any =await
+       handleFormUploadProfile(profileSave!);
+      console.log( user?.school._id);
+      registerUser(
+        {
+          variables: {
+            profile: thumbnail,
+            userName: `${firstName.charAt(0).toUpperCase()}${lastName
+              .charAt(0)
+              .toUpperCase()}`,
+            phoneNumber,
+            fullName: `${firstName} ${lastName}`,
+            permission: permisotin.value,
+            email,
+            password,
+            active: true,
+            schoolId: user?.school._id
+          }
+        },
+        {
+          onError: (error: any) => {
+            Object.keys(error?.response?.data).forEach((field: any) => {
+              setError(field, {
+                type: 'manual',
+                message: error?.response?.data[field][0]
+              });
+            });
+          }
+        }
+      );
+    }
   }
 
   return (
@@ -101,7 +128,11 @@ export const CustomerCreateForm = () => {
 
           <Card className="w-full sm:w-8/12 md:w-2/3">
             <UploadUserProfileStyle>
-              <Uploader profile={profile} setProfile={setProfile} setProfileSave={setProfileSave} />
+              <Uploader
+                profile={profile}
+                setProfile={setProfile}
+                setProfileSave={setProfileSave}
+              />
             </UploadUserProfileStyle>
 
             <InpuGroup>
@@ -111,10 +142,10 @@ export const CustomerCreateForm = () => {
                 variant="outline"
                 className="mb-4 input"
                 placeholder="Primeio nome usuário"
-				{...register("firstName")}
+                {...register('firstName')}
               />
               <Input
-			  {...register("lastName")}
+                {...register('lastName')}
                 label="Nome"
                 type="text"
                 variant="outline"
@@ -124,13 +155,12 @@ export const CustomerCreateForm = () => {
             </InpuGroup>
 
             <Input
-              label="Contato"
+              label="Contacto"
               type="text"
               variant="outline"
               className="mb-4"
-              placeholder="contato 1"
-			  {...register("contact")}
-			
+              placeholder="Contacto pessoal do usuário"
+              {...register('phoneNumber')}
             />
             <Input
               label="Email"
@@ -138,11 +168,10 @@ export const CustomerCreateForm = () => {
               variant="outline"
               className="mb-4"
               placeholder="E-email de acesso"
-			  {...register("email")}
-			 
+              {...register('email')}
             />
             <Input
-			  {...register("password")}
+              {...register('password')}
               label="Senha"
               type="password"
               variant="outline"
@@ -159,8 +188,8 @@ export const CustomerCreateForm = () => {
                 defaultInputValue="Seleciona o usuário"
                 aria-label="Seleciona o usuário"
                 placeholder="Seleciona o usuário"
-				value={options.label} // this doesn't let me click options
-				onChange={(option) => setPermisotin(option)} // this returns (option) => option.phaseText) as a string
+                value={options.label} // this doesn't let me click options
+                onChange={option => setPermisotin(option)} // this returns (option) => option.phaseText) as a string
               />
             </div>
             <div className="mb-4 text-right">

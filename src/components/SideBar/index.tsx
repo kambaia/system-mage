@@ -20,10 +20,12 @@ export const SideBar: React.FC<{}> = () => {
       <C.Container>
         <ul>
           <span className="logo">
-            <img src={`${user?.school.schoolLogo}`}/>
-            <div><h3>{user?.school.schoolName}</h3></div>
+            <img src={`${user?.school.schoolLogo}`} />
+            <div>
+              <h3>{user?.school.schoolName}</h3>
+            </div>
           </span>
-         
+
           <div className="content-nav ">
             <li className={asPath === ROUTES.DASHBOARD ? 'active' : ''}>
               <Link as={ROUTES.DASHBOARD} href={ROUTES.DASHBOARD}>
@@ -35,28 +37,32 @@ export const SideBar: React.FC<{}> = () => {
                 </a>
               </Link>
             </li>
-            <li
-              className={
-                asPath === ROUTES.USER ||
-                asPath === ROUTES.USER + '/1' ||
-                asPath === ROUTES.USER + '/2' ||
-                asPath === ROUTES.USER + '/3' ||
-                asPath === ROUTES.USER + '/4' ||
-                asPath === ROUTES.USER + '/create' ||
-                asPath === ROUTES.USER + '/update'
-                  ? 'active'
-                  : ''
-              }
-            >
-              <Link href={ROUTES.USER + '/1'}>
-                <a>
-                  <span className="icon">
-                    <FaIcon.FaUsers className="color-icon" />
-                  </span>
-                  <span className="title">Usuários</span>
-                </a>
-              </Link>
-            </li>
+            {user?.permissions?.role === 'administrador_de_sistema_escolar'? (
+              <li
+                className={
+                  asPath === ROUTES.USER ||
+                  asPath === ROUTES.USER + '/1' ||
+                  asPath === ROUTES.USER + '/2' ||
+                  asPath === ROUTES.USER + '/3' ||
+                  asPath === ROUTES.USER + '/4' ||
+                  asPath === ROUTES.USER + '/create' ||
+                  asPath === ROUTES.USER + '/update'
+                    ? 'active'
+                    : ''
+                }
+              >
+                <Link href={ROUTES.USER + '/1'}>
+                  <a>
+                    <span className="icon">
+                      <FaIcon.FaUsers className="color-icon" />
+                    </span>
+                    <span className="title">Usuários</span>
+                  </a>
+                </Link>
+              </li>
+            ) : (
+              ''
+            )}
             <li className={asPath === ROUTES.EMPLOYEE ? 'active' : ''}>
               <Link href={ROUTES.EMPLOYEE}>
                 <a>

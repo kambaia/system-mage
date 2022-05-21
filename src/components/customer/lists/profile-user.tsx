@@ -14,8 +14,6 @@ export const ListAllUserProfile = () => {
 
   const { data, isLoading} = useMeQuery(user?.id);
 
-
-
   const previewImage = async (e: any) => {
     const reader = new FileReader();
     reader.onload = () => {
