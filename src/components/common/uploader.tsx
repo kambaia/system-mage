@@ -7,7 +7,7 @@ import styled from "styled-components";
 type Props = {
 	setProfileSave: (value: File)=>void;
 	setProfile: (value:any)=>void;
-	profile: string;
+	profile?: string;
   };
 
 export default function Uploader({ setProfileSave, profile, setProfile }:Props) {

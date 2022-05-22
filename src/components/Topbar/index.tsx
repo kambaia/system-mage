@@ -15,6 +15,7 @@ export const TopBar = () => {
   function SignOut() {
     Cookies.remove('auth_token');
     Cookies.remove('auth_permissions');
+	Cookies.remove('auth_id');
     router.push('/');
     return <Loader text="Saindo..." />;
   }

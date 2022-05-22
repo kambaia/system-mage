@@ -47,7 +47,7 @@ export declare type IUser = {
     permission?: Roles;
 	createdAt: Scalars["DateTime"];
 	updatedAt: Scalars["DateTime"];
-	profile?: Maybe<Profile>;
+	profile?: Scalars["String"];
 };
 
 export declare type LoginUser = {
@@ -57,12 +57,12 @@ export declare type LoginUser = {
 	userName: Scalars["String"];
 	email: Scalars["String"];
 	phoneNumber: Scalars["String"];
-	profile?: Maybe<Profile>;
+	profile?: Scalars["String"];
 	permissions?: Roles;
 	school: SchoolAccess
 };
 
-export declare type Contact {
+export declare type Contact = {
 	unitel:Scalars["String"];
 	movicel:Scalars["String"];
 	fixe:Scalars["String"];
@@ -84,7 +84,7 @@ export declare type IEmployee = {
 
 
 
-export declare type permission = {
+export declare type Roles = {
 		role: Scalars["String"];
 		type:  Scalars["String"];
 }
@@ -106,12 +106,7 @@ export declare type Social = {
 	link?: Maybe<Scalars["String"]>;
 };
 /** A paginated list of Order items. */
-export declare type OrderPaginator = {
-	/** Pagination information about the list of items. */
-	paginatorInfo: PaginatorInfo;
-	/** A list of Order items. */
-	data: Array<Order>;
-};
+
 /** Pagination information about the corresponding list of items. */
 export declare type PaginatorInfo = {
 	/** Total count of available items in the page. */
@@ -127,44 +122,7 @@ export declare type PaginatorInfo = {
 	/** Total items available in the collection. */
 	total: Scalars["Int"];
 };
-export declare type Order = {
-	id: Scalars["ID"];
-	tracking_number: Scalars["String"];
-	customer_contact: Scalars["String"];
-	customer_id: Scalars["Int"];
-	customer_nif: Maybe<Scalars["String"]>;
-	customer?: Maybe<User>;
-	amount: Scalars["Float"];
-	sales_tax: Scalars["Float"];
-	total: Scalars["Float"];
-	paid_total: Scalars["Float"];
-	payment_id?: Maybe<Scalars["String"]>;
-	payment_gateway?: Maybe<Scalars["String"]>;
-	coupon?: Maybe<Coupon>;
-	discount?: Maybe<Scalars["Float"]>;
-	delivery_fee?: Maybe<Scalars["Float"]>;
-	delivery_time: Scalars["String"];
-	delivery_hour: Scalars["String"];
-	obs: Scalars["String"];
-	created_at: Scalars["DateTime"];
-	updated_at: Scalars["DateTime"];
-	billing_address?: Maybe<UserAddress>;
-	shipping_address?: Maybe<UserAddress>;
-};
 
-export declare type Coupon = {
-	id: Scalars["ID"];
-	code: Scalars["String"];
-	description: Scalars["String"];
-	orders: Array<Order>;
-	type: Scalars["String"];
-	image: Scalars["String"];
-	amount: Scalars["Float"];
-	active_from: Scalars["DateTime"];
-	expire_at: Scalars["DateTime"];
-	created_at: Scalars["DateTime"];
-	updated_at: Scalars["DateTime"];
-};
 
 
 /** The available directions for ordering a list of records. */
@@ -193,21 +151,12 @@ export enum ProductStatus {
 	Publish = "publish",
 	Draft = "draft",
 }
-
-export declare type CouponPaginator = {
-	/** Pagination information about the list of items. */
-	paginatorInfo: PaginatorInfo;
-	/** A list of Coupon items. */
-	data: Array<Coupon>;
-};
-
-
 /** A paginated list of User items. */
 export declare type UserPaginator = {
 	/** Pagination information about the list of items. */
 	paginatorInfo: PaginatorInfo;
 	/** A list of User items. */
-	data: Array<User>;
+	data: Array<IUser>;
 };
 export declare type AddressInput = {
 	title: Scalars["String"];
