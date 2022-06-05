@@ -79,6 +79,7 @@ export const SessionInputFildUser = styled.div`
   width: 100%;
   border-bottom: 2px solid #ddd;
   position: relative;
+  padding: 20px 0px;
 
   .border {
     border: none;
@@ -89,13 +90,14 @@ export const SessionInputFildUser = styled.div`
 	  padding: 0px 20px;
 
   }
+  
 
   .content-card-users{
 	  width: 100%;
 	  height: 400px;
 	  background-color: #fafafa;
 	  position: absolute;
-	  top: 80%;
+	  top: 100%;
 	  flex-direction: column;
 	  box-shadow: 0px 0px 10px #ddd;
 	  z-index: 100;
@@ -127,6 +129,7 @@ export const SessionInputFildUser = styled.div`
 		  overflow-x: hidden;
 		  height: 300px;
 
+
 		  li{
 			display: flex;
 			align-items: center;
@@ -139,8 +142,17 @@ export const SessionInputFildUser = styled.div`
 	  }
   }
 `;
-
-
+export const GroupCard = styled.div`
+  padding-bottom: 10px;
+ h3{
+   font-size: 12pt;
+   font-weight:bold;
+   color: #555;
+   padding-bottom: 10px;
+   border-bottom: 1px solid #ddd;
+ }
+ 
+`;
 
 
 export const Wrapper = styled.div`
@@ -174,8 +186,8 @@ export const Wrapper = styled.div`
       justify-content: center;
       align-items: center;
       flex-direction: column;
-	  height: 250px;
-	  width: 250px;
+      height: 200px;
+      width: 200px;
       button{
             cursor: pointer;  
             background-color: green;

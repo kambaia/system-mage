@@ -73,6 +73,10 @@ display: flex;
 
 `;
 export const UploadUserProfileStyle = styled.div`
+.progress{
+  width: 100%;
+  padding: 10px;
+}
  .user {
     box-shadow: 0px 2px 5px #ddd;
     display: flex;

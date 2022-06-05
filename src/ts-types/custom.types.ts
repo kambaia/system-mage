@@ -55,6 +55,7 @@ export type QueryOptionsType = {
   limit?: number;
   orderBy?: OrderField;
   sortedBy?: SortOrder;
+  schoolId: string,
 };
 
 export type QueryParamsType = {

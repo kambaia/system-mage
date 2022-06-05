@@ -3,17 +3,15 @@ import Button from '../../ui/button';
 import { CardButton, CardGroup, ContentTable} from './styles';
 import Link from 'next/link';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
-import { userListQuery } from '@data/user/use-me.query';
+import { allEmployQuery } from '@data/employee/employee-list';
 import { useContext } from 'react';
 import { AuthContext } from '@contexts/AuthContext';
 import Loader from '@components/ui/loader/loader';
 import { formatDate } from '@utils/form-date';
 export const ListAllEmployeePanel = () => {
   const { user } = useContext(AuthContext);
-  const { data, isLoading } = userListQuery(user?.school._id);
-
-  console.log(data)
-
+  const { data, isLoading } = allEmployQuery(user?.school._id!);
+   console.log(data)
   return (
     <>
       <div className="w-full p-1 h-screen bg-gray-100">
@@ -88,17 +86,17 @@ export const ListAllEmployeePanel = () => {
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer hover:bg-gray-100">
                       <div className='user-profile'>
-							<img className='rounded-full' src={items?.profile!} alt="profile user"/>
+							<img className='rounded-full' src={items?.userId.profile?.thumbnail!} alt="profile user"/>
 					  </div>
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer hover:bg-gray-100">
-                     {items.fullName}
+                     {items.firstName}
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer ">
-					{items.email}
+					{items.userId.email}
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
-					{items.phoneNumber}
+					{items.contact?.unitel}
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
                       <span className="p-1.5 text-xs font-medium uppercase tracking-wide cursor-pointer">

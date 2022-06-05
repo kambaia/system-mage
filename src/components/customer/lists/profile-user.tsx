@@ -5,14 +5,16 @@ import { InpuGroup } from '../Forms/styles';
 import { Card, CardBody } from '@components/common/card';
 import { AiOutlineUpload } from 'react-icons/ai';
 import { FormEvent, useContext, useState } from 'react';
-import { UploadImage, useMeQuery } from '@data/user/use-me.query';
+import { UploadImage, useEmployeeQuery } from '@data/user/use-me.query';
 import { AuthContext } from '@contexts/AuthContext';
 export const ListAllUserProfile = () => {
   const [uploading, setUploading] = useState(false);
   const { user } = useContext(AuthContext);
   const [profile, setProfile] = useState<any>('');
 
-  const { data, isLoading} = useMeQuery(user?.id);
+  const { data, isLoading} = useEmployeeQuery(user?.id);
+
+  console.log(data);
 
   const previewImage = async (e: any) => {
     const reader = new FileReader();

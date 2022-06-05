@@ -4,18 +4,37 @@ import { CardButton, CardGroup, ContentTable } from './styles';
 import Link from 'next/link';
 
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
-import { userListQuery } from '@data/user/use-me.query';
-import { useContext } from 'react';
+import { userSchoolListQuery } from '@data/user/use-me.query';
+import { useContext, useState } from 'react';
 import { AuthContext } from '@contexts/AuthContext';
 import Loader from '@components/ui/loader/loader';
 import { formatDate } from '@utils/form-date';
 import ErrorMessage from '@components/ui/error-message';
-export const ListAllUserPanel = () => {
-	const { user } = useContext(AuthContext);
-	const { data, isLoading:loading, error } = userListQuery(user?.school._id);
-	if (loading) return <Loader />;
-	if (error) return <ErrorMessage message={error.message} />;
+import { useUsersQuery } from '@data/user/use-users.query';
+import Pagination from '@components/ui/pagination';
+import { UserPaginator } from '@ts-types/generated';
+
+
+type userListProps = {
+	profile: string;
+	firstName: string;
+	unitel: string,
+	email: string,
+	phoneNumber: string,
+	dateCreated: string,
+	permission: string,
+	id: string;
+}
+type IProps = {
+	customers: UserPaginator | null | undefined;
+	onPagination: (current: number) => void;
+};
+
+export const ListAllUserPanel = ({ customers, onPagination }: IProps) => {
+	const { data, paginatorInfo } = customers!;
+	console.log(customers)
 	return (
+
 		<>
 			<div className="w-full p-1 h-screen bg-gray-100">
 				<CardButton>
@@ -78,19 +97,22 @@ export const ListAllUserPanel = () => {
 								</tr>
 							</thead>
 							<tbody className="divide-y divide-gray-100">
+
+
 								{
-									data?.map((items, index) => (
+									data?.map((items: any, index: number) => (
+
 										<tr className="bg-white border-btransition duration-300 ease-in-out hover:bg-gray-100">
 											<td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
 												{index + 1}
 											</td>
 											<td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer hover:bg-gray-100">
 												<div className='user-profile'>
-													<img className='rounded-full' src={items?.profile} alt="profile user" />
+													<img className='rounded-full' src={items?.profile?.thumbnail} alt="profile user" />
 												</div>
 											</td>
 											<td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer hover:bg-gray-100">
-												{items.fullName}
+												{items.name}
 											</td>
 											<td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer ">
 												{items.email}
@@ -100,14 +122,14 @@ export const ListAllUserPanel = () => {
 											</td>
 											<td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
 												<span className="p-1.5 text-xs font-medium uppercase tracking-wide cursor-pointer">
-													{items.permission?.role}
+													{items.permission.role}
 												</span>
 											</td>
 											<td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
 												{formatDate(items?.createdAt)}
 											</td>
 											<td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
-												<Link href={`/school/user/update/${items._id}`}>
+												<Link href={`/school/user/update/${items.id}`}>
 													<a>
 														<FiEdit />
 													</a>
@@ -123,6 +145,17 @@ export const ListAllUserPanel = () => {
 								}
 							</tbody>
 						</table>
+
+						{!!paginatorInfo.total && (
+							<div className="flex justify-end items-center p-4">
+								<Pagination
+									total={paginatorInfo.total}
+									current={paginatorInfo.currentPage}
+									pageSize={paginatorInfo.perPage}
+									onChange={onPagination}
+								/>
+							</div>
+						)}
 					</ContentTable>
 				</div>
 

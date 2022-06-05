@@ -1,0 +1,48 @@
+{
+  "firstName": {
+    "required": "O nome do funcionário é um campo obrigatório"
+  },
+  "lastName": {
+    "required": "O sobrenome funcionário é um campo obrigatório"
+  },
+  "email": {
+    "required": "E-mail é um campo obrigatório",
+    "email": "O e-mail informado é inválido"
+  },
+  "phoneNumber": {
+    "required": "O número de celular informado é inválido"
+  },
+  "description": {
+    "required": "Por favor digite uma descrição sobre você"
+  },
+  "gender": {
+    "required": "O genero do funcionário é um campo obrigatório"
+  },
+  "birthDate": {
+    "required": "A data de nascimento do funcionário é um campo obrigatório"
+  },
+  "employeeIdentity": {
+    "required": "O nº do bilhete do funcionário é um campo obrigatório"
+  },
+  "street": {
+    "required": "A rua do funcionário é um campo obrigatório"
+  },
+  "city": {
+    "required": "A cidade ou bairro do funcionário é um campo obrigatório"
+  },
+  "province": {
+    "required": "A província do funcionário é um campo obrigatório"
+  },
+  "country": {
+    "required": "O país do funcionário é um campo obrigatório"
+  },
+  "county": {
+    "required": "A o município do funcionário é um campo obrigatório"
+  },
+  "neighborhood": {
+    "required": "O bairro  do funcionário é um campo obrigatório"
+  },
+  "unitel": {
+    "required": "O telefone do funcionário é um campo obrigatório"
+  }
+}

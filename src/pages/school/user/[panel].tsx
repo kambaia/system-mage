@@ -1,5 +1,5 @@
 import BainnerFeature from '../../../components/BainnerFeature';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Layout from '../../../Layout';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import * as C from "./styles";
@@ -12,12 +12,36 @@ import {SUPER_ADMIN } from '@utils/constants';
 import { GetServerSideProps } from "next";
 import { parseContextCookie } from "@utils/parse-cookie";
 import { isTokenExpired } from 'src/util/auth';
-import { userListQuery } from '@data/user/use-me.query';
 import { AuthContext } from '@contexts/AuthContext';
+import Loader from '@components/ui/loader/loader';
+import ErrorMessage from '@components/ui/error-message';
+import { useUsersQuery } from '@data/user/use-users.query';
 
 export default function UserPanel() {
-
     const router = useRouter();
+		const [searchTerm, setSearchTerm] = useState("");
+		const [page, setPage] = useState(1);
+		const { user } = useContext(AuthContext);
+	
+		const { data, isLoading: loading, error } = useUsersQuery({
+			limit: 20,
+			page,
+			text: searchTerm,
+			schoolId: user?.school._id!
+		});
+		if (loading) return <Loader />;
+		if (error) return <ErrorMessage message={error.message} />;
+	
+		function handleSearch({ searchText }: { searchText: string }) {
+			setSearchTerm(searchText);
+			setPage(1);
+		}
+
+		function handlePagination(current: any) {
+		  setPage(current);
+		}
+
+
 	return (
 		<Layout>
 			<C.WrapperContent>
@@ -31,13 +55,13 @@ export default function UserPanel() {
 						{/* <Tab>Rascunhos</Tab> */}
 					</TabList>
 					<TabPanel className="content">
-							<ListAllUserPanel/>
+							<ListAllUserPanel customers={data?.users} onPagination={handlePagination}/>
 					</TabPanel >
 					<TabPanel className="content">
 							<ListAllStudentPanel/>
 					</TabPanel >
 					<TabPanel className="content">
-							<ListAllTeacherUserPanel/>
+							<ListAllTeacherUserPanel  />
 					</TabPanel >
 					<TabPanel className="content">
 							<ListAllSystemUserPanel/>

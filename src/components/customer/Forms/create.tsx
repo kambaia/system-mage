@@ -12,17 +12,18 @@ import {
 	InpuGroup
 } from './styles';
 import { AuthContext } from '@contexts/AuthContext';
-import { UploadImage } from '@data/user/use-me.query';
-import { useCreateUserMutation } from '@data/user/use-user-create.mutation';
+import {useRolesQuery} from '@data/user/use-me.query';
+import { useCreateUserMutation,} from '@data/user/use-user-create.mutation';
 import Uploader from '@components/common/uploader';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { InputError } from '@components/common/InputError';
+import { InputError } from '@components/customer/validate/InputError';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import { ROUTES } from '@utils/routes';
-import { IUser } from '@ts-types/generated';
+import { UploadImage } from '@data/upload/upload';
+
 type FormValues = {
 	email: string;
 	password: string;
@@ -41,8 +42,10 @@ const defaultValues = {
 
 export const CustomerCreateForm = () => {
 
-	const { mutate: saveUser, isLoading } = useCreateUserMutation();
+	const { mutate: saveUser, isLoading:loadingUser } = useCreateUserMutation();
 	const router = useRouter();
+
+	const { data, isLoading} = useRolesQuery();
 
 	const validationSchema = yup.object({
 		firstName: yup.string().required(),
@@ -62,39 +65,31 @@ export const CustomerCreateForm = () => {
 		defaultValues,
 		resolver: yupResolver(validationSchema)
 	});
-
-	const options: any = [
-		{ value: '6287efb7ee7c139f17cd881c', label: 'Adiministrador de Sistema' },
-		{ value: '2', label: 'Direitor' },
-		{ value: '3', label: 'Secretário' },
-		{ value: '62880b2d7d0ae15fe4242691', label: 'Tesouraria' },
-		{ value: '5', label: 'Professor' },
-		{ value: '6', label: 'Estudante' }
-	];
-
+	const options= data
 	const { user } = useContext(AuthContext);
 	const [profileSave, setProfileSave] = useState<File | null>(null);
 	const [profile, setProfile] = useState<string | undefined>('');
 	const [uploading, setUploading] = useState(false);
 	const [permisotin, setPermisotin] = useState({ value: '1', label: '' });
 
-	const handleFormUploadProfile = async (profileSave: File) => {
+	const handleFormUploadProfile = async (email: string, profileSave: File) => {
 		if (profileSave && profileSave.size > 0) {
 			setUploading(true);
-			const resp = await UploadImage(profileSave);
+			const resp = await UploadImage(email, profileSave);
+
 			if (resp instanceof Error) {
 				alert(`${resp.message}`);
 			} else {
-				return resp.thumbnail;
+			    const { name, thumbnail }= resp;
+			return {name, thumbnail};
 			}
 			setUploading(false);
 		}
 	};
 
 	function onError(error: any) {
-		toast.error('Confira os campos e tente novamente!');
+		toast.error('Confira os campos e tente novamente!', { duration: 8000 });
 	}
-
 	async function onSubmit({
 		firstName,
 		lastName,
@@ -102,11 +97,11 @@ export const CustomerCreateForm = () => {
 		phoneNumber,
 		password
 	}: FormValues) {
-		let thumbnail: any = await handleFormUploadProfile(profileSave!);
+		let {name, thumbnail }: any = await handleFormUploadProfile(email, profileSave!);
 		saveUser(
 			{
 				variables: {
-					profile: thumbnail,
+					profile: {thumbnail, name},
 					userName: `${firstName.charAt(0).toUpperCase()}${lastName
 						.charAt(0)
 						.toUpperCase()}`,
@@ -164,8 +159,8 @@ export const CustomerCreateForm = () => {
 					console.log(thumbnail);
 					console.log(data);
 					toast.error(
-						'Aconteceu um erro ao registrar as informações. Certifica se não há uma informação semelhante já cadastrada'
-					);
+						'Aconteceu um erro ao registrar as informações. Certifica se não há uma informação semelhante já cadastrada',
+						{ duration: 8000 });
 				}
 			}
 		);
@@ -270,7 +265,7 @@ export const CustomerCreateForm = () => {
 								defaultInputValue="Seleciona o usuário"
 								aria-label="Seleciona o usuário"
 								placeholder="Seleciona o usuário"
-								value={options.label} // this doesn't let me click options
+								value={options?.label} // this doesn't let me click options
 								onChange={option => setPermisotin(option)} // this returns (option) => option.phaseText) as a string
 							/>
 						</div>

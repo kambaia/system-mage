@@ -62,11 +62,10 @@ export const CardGroup = styled.div`
 
 
 export const InpuGroup = styled.div`
-display: flex;
+  display: flex;
   width: 100%;
   justify-content: space-between;
   margin-top: 15px;
-
   .input {
     width: 48%;
   }

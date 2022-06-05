@@ -1,6 +1,11 @@
 import Layout from '../../../Layout';
 import {CustomerCreateForm} from "@components/customer/Forms";
 import * as C from "./styles";
+import { parseContextCookie } from '@utils/parse-cookie';
+import { GetServerSideProps } from 'next';
+import { isTokenExpired } from 'src/util/auth';
+import { ROUTES } from '@utils/routes';
+import { SUPER_ADMIN } from '@utils/constants';
 export default function CreatePage() {
 	return (
 		<Layout>
@@ -22,3 +27,20 @@ export default function CreatePage() {
 	);
 }
 CreatePage.Layout = Layout;
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+	const cookies = parseContextCookie(context?.req?.headers?.cookie);
+	if (cookies?.auth_token  || !isTokenExpired(cookies?.auth_token)) {
+		if (!cookies?.auth_permissions?.includes(SUPER_ADMIN)) {
+			return {
+				redirect: { destination: ROUTES.DASHBOARD, permanent: false },
+			};
+		}
+    return {
+      props: {},
+    };
+	}
+  return {
+    redirect: { destination: "/login", permanent: false },
+  };
+};

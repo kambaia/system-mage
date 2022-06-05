@@ -18,11 +18,11 @@ import Uploader from '@components/common/uploader';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { InputError } from '@components/common/InputError';
+import { InputError } from '@components/customer/validate/InputError';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import { ROUTES } from '@utils/routes';
-import { IUser } from '@ts-types/generated';
+import { IUser, Profile } from '@ts-types/generated';
 type FormValues = {
   email: string;
   password: string;
@@ -74,14 +74,14 @@ export const CustomerUpdateForm = ({initialValues}:IProps) => {
 
   const { user } = useContext(AuthContext);
   const [profileSave, setProfileSave] = useState<File | null>(null);
-  const [profile, setProfile] = useState<string | undefined>('');
+  const [profile, setProfile] = useState<string | null>("");
   const [uploading, setUploading] = useState(false);
   const [permisotin, setPermisotin] = useState({ value: '1', label: '' });
 
-  const handleFormUploadProfile = async (profileSave: File) => {
+  const handleFormUploadProfile = async (email:string,profileSave: File) => {
     if (profileSave && profileSave.size > 0) {
       setUploading(true);
-      const resp = await UploadImage(profileSave);
+      const resp = await UploadImage(email, profileSave);
       if (resp instanceof Error) {
         alert(`${resp.message}`);
       } else {
@@ -102,7 +102,7 @@ export const CustomerUpdateForm = ({initialValues}:IProps) => {
     phoneNumber,
     password
   }: FormValues) {
-    let thumbnail: any = await handleFormUploadProfile(profileSave!);
+    let thumbnail: any = await handleFormUploadProfile(email, profileSave!);
     saveUser(
       {
         variables: {
@@ -180,7 +180,7 @@ export const CustomerUpdateForm = ({initialValues}:IProps) => {
 		setValue('lastName', last);
 		setValue('phoneNumber', initialValues.phoneNumber);
 		setValue('email', initialValues.email);
-		setProfile(initialValues?.profile)
+		setProfile(initialValues?.profile?.thumbnail!);
 	}
 }, [])
 
@@ -198,7 +198,7 @@ export const CustomerUpdateForm = ({initialValues}:IProps) => {
           <Card className="w-full sm:w-8/12 md:w-2/3">
             <UploadUserProfileStyle>
               <Uploader
-                profile={profile}
+                profile={profile!}
                 setProfile={setProfile}
                 setProfileSave={setProfileSave}
               />

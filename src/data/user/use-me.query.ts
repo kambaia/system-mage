@@ -1,14 +1,8 @@
 import User from "@repositories/user";
 import { useQuery } from "react-query";
-import { IEmployee, Profile, IUser } from "@ts-types/generated";
+import {IUser, Roles } from "@ts-types/generated";
 import { API_ENDPOINTS } from "@utils/api/endpoints";
-import { storage } from '../../../config/firebase';
-import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
-import { v4 as creadId } from 'uuid'
-export const fetchMe = async (id: string) => {
-	const { data } = await User.findOne(API_ENDPOINTS.EMPLOYEE, id);
-	return data;
-};
+
 
 export const fetchUser = async (id: string) => {
 	const { data } = await User.find(`${API_ENDPOINTS.USER}/${id}`);
@@ -16,40 +10,47 @@ export const fetchUser = async (id: string) => {
 };
 
 export const fetcUsers = async (id: string) => {
-	const { data } = await User.find(`${API_ENDPOINTS.USERS}/${id}`);
-	return data;
+	const { data } = await User.find(`${API_ENDPOINTS.USER_FOR_SCHOOL}/${id}`);
+	const newdata = data.map((item: IUser) => {
+		return {
+			profile: item.profile?.thumbnail,
+			firstName: item.fullName,
+			unitel: item.phoneNumber,
+			email:item.email,
+			phoneNumber: item.phoneNumber,
+			dateCreated: item.createdAt,
+			permission: item.permission?.role,
+			id:item._id
+		}
+	})
+	return newdata;
 };
 
 
 export const userQuery = (id: string) => {
 	return useQuery<IUser, Error>([API_ENDPOINTS.USER, id], () =>
-	fetchUser(id)
+		fetchUser(id)
 	);
 };
-
-export const userListQuery = (idUser: string | undefined) => {
-	return useQuery<IUser[], Error>([API_ENDPOINTS.USERS], () => fetcUsers(idUser!));
+export const fetchRoles = async () => {
+	const { data } = await User.find(API_ENDPOINTS.ROLE);
+	const newData = data.map((items: Roles) => {
+		return {
+			value: items._id,
+			label: items.role
+		}
+	})
+	return [...newData];
 };
 
-export const useEmployeeMeQuery = (idUser: string | undefined) => {
-	return useQuery<IEmployee, Error>([API_ENDPOINTS.USERS], () => fetchMe(idUser!));
+export const userSchoolListQuery = (idUser: string | undefined) => {
+	return useQuery<any, Error>([API_ENDPOINTS.USER_FOR_SCHOOL], () => fetcUsers(idUser!));
 };
 
 export async function recoverUserInformation(id: string) {
-	return await User.findOne(API_ENDPOINTS.ACCESS_USER, id);
+	return await User.findOne(`${API_ENDPOINTS.ACCESS_USER}/${id}`);
 }
 
-export async function UploadImage(file: File) {
-	if (["image/jpg", "image/jpeg", "image/webp", "image/svg+xml", "image/png"].includes(file.type)) {
-		let rondomId = creadId()
-		let newFile = ref(storage, `files/school/users/${rondomId}`)
-		let upload = await uploadBytes(newFile, file);
-		let img_url = await getDownloadURL(upload.ref);
-		return {
-			name: upload.ref.name,
-			thumbnail: img_url
-		} as Profile
-	} else {
-		return new Error("Tipo de arquivo não permitido")
-	}
-}
+export const useRolesQuery = () => {
+	return useQuery<any, Error>([API_ENDPOINTS.ROLE], () => fetchRoles());
+};

@@ -12,10 +12,8 @@ const fetchUsers = async ({ queryKey }: QueryParamsType) => {
     limit = 15,
     orderBy = "updated_at",
     sortedBy = "DESC",
-    schoolId
   } = params as QueryOptionsType;
-  
-  const url = `${API_ENDPOINTS.USER_FOR_SCHOOL}?schoolId=${schoolId}&search=${text}&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
+  const url = `${API_ENDPOINTS.USERS}?search=${text}&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
   const {
     data: { data, ...rest },
   } = await User.all(url);
@@ -23,7 +21,7 @@ const fetchUsers = async ({ queryKey }: QueryParamsType) => {
 };
 
 const useUsersQuery = (options: QueryOptionsType) => {
-  return useQuery<any, Error>([API_ENDPOINTS.USER_FOR_SCHOOL, options], fetchUsers, {
+  return useQuery<any, Error>([API_ENDPOINTS.USERS, options], fetchUsers, {
     keepPreviousData: true,
   });
 };

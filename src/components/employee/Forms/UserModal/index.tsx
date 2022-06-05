@@ -7,7 +7,7 @@ import { UserFormData } from '../../types/user';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { phoneNumber } from '../../utils/validations';
-import { InputError } from '../../../common/InputError/index';
+import { InputError } from '../../../customer/validate/InputError/index';
 import { toast } from 'react-toastify';
 import { normalizePhoneNumber } from '../../utils/masks';
 

@@ -23,19 +23,13 @@ export declare type Scalars = {
 
 export declare type UserAddress = {
 	street:  Scalars["String"];
-	city:  Scalars["String"];
-	postCode:  Scalars["String"];
+	city?:  Scalars["String"];
 	province: Scalars["String"];
     country:  Scalars["String"];
 	county:  Scalars["String"];
 	neighborhood: Scalars["String"];
 };
 
-export enum Gender {
-	masculino = 'Masculino',
-	femenino = 'Femenino',
-	undisclosed = 'undisclosed'
-}
 
 
 export declare type IUser = {
@@ -47,7 +41,7 @@ export declare type IUser = {
     permission?: Roles;
 	createdAt: Scalars["DateTime"];
 	updatedAt: Scalars["DateTime"];
-	profile?: Scalars["String"];
+	profile?: Profile;
 };
 
 export declare type LoginUser = {
@@ -65,28 +59,38 @@ export declare type LoginUser = {
 export declare type Contact = {
 	unitel:Scalars["String"];
 	movicel:Scalars["String"];
-	fixe:Scalars["String"];
+	fixe?:Scalars["String"];
 }
 export declare type IEmployee = {
-	_id:String;
+	_id?:String;
 	firstName: Scalars["String"];
 	lastName: Scalars["String"];
-	description: Scalars["String"];
-	gender?: Gender;
+	position: Scalars["String"];
+	description?: Scalars["String"];
+	gender?: Scalars["String"];
 	birthDate: Scalars["String"];
-	employeeBiFile:Scalars["String"];
-	employeeIdentity:Scalars["String"];
+	employeeBiFile?:Scalars["String"];
+	employeeIdentity?:Scalars["String"];
 	address?: UserAddress;
 	contact?:Contact
-	active:boolean;
+	active?:boolean;
+	schoolId: Scalars["String"];
+	userId?:Scalars["String"];
 }
 
 
 
 
 export declare type Roles = {
+		_id: Scalars["String"];
 		role: Scalars["String"];
 		type:  Scalars["String"];
+}
+
+export declare type RolesAccess = {
+	_id: Scalars["String"];
+	value: Scalars["String"];
+	label:Scalars["String"];
 }
 
 export declare type SchoolAccess = {
@@ -98,7 +102,7 @@ export declare type SchoolAccess = {
 
 
 export declare type Profile = {
-	thumbnail?: Maybe<Scalars["String"]>;
+	thumbnail: Maybe<Scalars["String"]>;
 	name: Scalars["String"];
 };
 export declare type Social = {
@@ -133,9 +137,9 @@ export enum SortOrder {
 	Desc = "DESC",
 }
 
-export declare type Attachment = {
-	thumbnail?: Maybe<Scalars["String"]>;
-	original?: Maybe<Scalars["String"]>;
+export declare type File = {
+	url_profile?: Maybe<Scalars["String"]>;
+	name?: Maybe<Scalars["String"]>;
 	id?: Maybe<Scalars["ID"]>;
 };
 
@@ -465,7 +469,6 @@ export type SettingsOptions = {
 	scheduleType?: Maybe<Scalars["String"]>;
 	schedule?: Maybe<Scalars["String"]>;
 	banner?: Maybe<Scalars["String"]>;
-	logo?: Maybe<Attachment>;
 	taxClass?: Maybe<Scalars["String"]>;
 	shippingClass?: Maybe<Scalars["String"]>;
 	order: {type: {}}
@@ -483,7 +486,7 @@ export declare type RegisterInput = {
 	password: Scalars["String"];
 	permission: Scalars["String"];
 	userName: Scalars["String"];
-	profile?:Scalars["String"];
+	profile?:Profile;
 	fullName: Scalars["String"];
 	phoneNumber?: Scalars["String"];
 	schoolId?:   Scalars["String"];
