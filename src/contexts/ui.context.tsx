@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, useState } from "react";
 export interface State {
   displaySidebar: boolean;
   displayModal: boolean;
@@ -113,6 +113,7 @@ export const UIProvider: FC = (props) => {
   const setModalData = (data: MODAL_DATA) =>
     dispatch({ type: "SET_MODAL_DATA", data });
 
+ 
   const value = useMemo(
     () => ({
       ...state,

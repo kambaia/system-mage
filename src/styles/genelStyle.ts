@@ -25,29 +25,20 @@ export const Content= styled.main`
 
 
 `
-export const MainContent= styled.section`
+export const MainContent= styled.main<{menu:boolean}>`
   position: absolute;
-  width: calc(100% - 20px);
-  left: 20px;
   height: 100vh;
   transition: 0.5s;
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 100vh;
   overflow: auto;
-  width: calc(100% - 300);
-  
-
+  width: ${p => p.menu? 'calc(100% - 300px)' : 'calc(100% - 80px)'};
+  left: ${p => p.menu? '300px': '80px'};
   @media(max-width:1024px) {
-	width: calc(100% - 0px);
-    left: 0px;
+	width: calc(100% - 90px);
+    left: 80px;
     }
-
-  .active{
-    width: calc(100% - 30px);
-    left: 300px;
-  }
   z-index: 0;
 `
 export const Container = styled.div`

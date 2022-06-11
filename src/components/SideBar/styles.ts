@@ -1,13 +1,11 @@
 import styled from "styled-components";
-
-export const Container = styled.nav`
+export const Container = styled.nav<{menu:boolean}>`
   position: fixed;
   height: 100%;
-  background: ${({ theme }) => theme.backgroundBlue};
   border-left: 10px solid ${({ theme }) => theme.backgroundBlue};
   transition: 0.5s;
   overflow: hidden;
-  width: 300px;
+  width: ${p => p.menu? '300px': '80px'};
   background: ${({ theme }) => theme.backgroundBlue};
   z-index: 999;
 
@@ -16,7 +14,7 @@ export const Container = styled.nav`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 25vh;
+    height: ${p => p.menu? '15hv': '25hv'};;
     padding: 20px 0;
     position: relative;
     width: 100%;
@@ -177,6 +175,7 @@ export const Container = styled.nav`
     position: absolute;
     width: 100%;
     bottom: 0;
+
   }
 
   .checkbox {
@@ -185,7 +184,7 @@ export const Container = styled.nav`
     background: #ddd;
     border-radius: 30px;
     position: relative;
-    margin-left: 20px;
+    margin-left:  ${p => p.menu? '30px': '0px'};
   }
   .checkbox::before,
   .checkbox::after {

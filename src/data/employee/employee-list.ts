@@ -9,9 +9,20 @@ export const fetcEmployee = async (id: string) => {
 	return data;
 };
 
+export const fetcEmployeeProfile = async (id: string) => {
+	const { data } = await employee.find(`${API_ENDPOINTS.EMPLOYEE}/${id}`);
+	return data;
+};
+
 
 export const allEmployQuery = (id: string) => {
 	return useQuery<IEmployee[], Error>([API_ENDPOINTS.EMPLOYEE, id], () =>
 	fetcEmployee(id)
+	);
+};
+
+export const employQuery = (id: string) => {
+	return useQuery<IEmployee, Error>([API_ENDPOINTS.EMPLOYEE, id], () =>
+	fetcEmployeeProfile(id)
 	);
 };

@@ -171,7 +171,7 @@ export const CustomerCreateForm = () => {
 			<Toaster position="top-right" />
 
 			<form onSubmit={handleSubmit(onSubmit, onError)}>
-				<div className="flex flex-wrap my-5 sm:my-8">
+				<div className="flex flex-wrap my-5 sm:my-4">
 					<Description
 						title="Informação"
 						details="Adicine útilizadores de sistema para sua escola a partir daqui, colocando as suas informações de acesso."

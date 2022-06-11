@@ -11,18 +11,28 @@ import { AuthContext } from '@contexts/AuthContext';
 
 export const SideBar: React.FC<{}> = () => {
   const { asPath } = useRouter();
-  const { user } = useContext(AuthContext);
+  const { user, menu, onSetTheme} = useContext(AuthContext);
+  const onDarkMode = (e: any)=>{
+     if(e.target.checked){
+      onSetTheme('dark');
+     }else{
+      onSetTheme('light');
+     }
+  }
+
+
   return (
     <aside
-      style={{ overflowX: 'scroll' }}
+      
+      style={{ overflowX: 'scroll', width: menu? "300px":'80px'}}
       className="side-menu shadow w-72 xl:w-76 hidden lg:block overflow-y-auto bg-white fixed left-0 bottom-0 h-full"
     >
-      <C.Container>
+      <C.Container menu={ menu }>
         <ul>
           <span className="logo">
-            <img src={`${user?.school.schoolLogo}`} />
+            <img style={menu? {}:{width:'40px', height:'40px'}} src={`${user?.school.schoolLogo}`} alt="logo"/>
             <div>
-              <h3>{user?.school.schoolName}</h3>
+              <h3>{menu? user?.school.schoolName: '' }</h3>
             </div>
           </span>
 
@@ -37,7 +47,7 @@ export const SideBar: React.FC<{}> = () => {
                 </a>
               </Link>
             </li>
-            {user?.permissions?.role === 'administrador_de_sistema_escolar'? (
+            {user?.permissions?.role === 'administrador_de_sistema_escolar' ? (
               <li
                 className={
                   asPath === ROUTES.USER ||
@@ -64,7 +74,7 @@ export const SideBar: React.FC<{}> = () => {
               ''
             )}
             <li className={asPath === ROUTES.EMPLOYEE ? 'active' : ''}>
-			<Link href={ROUTES.EMPLOYEE + '/1'}>
+              <Link href={ROUTES.EMPLOYEE + '/1'}>
                 <a>
                   <span className="icon">
                     <AiIcon.AiOutlineUsergroupAdd className="color-icon" />
@@ -140,7 +150,7 @@ export const SideBar: React.FC<{}> = () => {
               <Link href={ROUTES.SETTINGS + '/1'}>
                 <a>
                   <span className="icon">
-                    <MdIcon.MdPayments className="color-icon" />
+                    <FiIcon.FiSettings className="color-icon" />
                   </span>
                   <span className="title">Configurações</span>
                 </a>
@@ -167,7 +177,7 @@ export const SideBar: React.FC<{}> = () => {
           </div>
           <div className="footer-bar">
             <div className="checkbox">
-              <input type="checkbox" className="checkbox-input" />
+              <input type="checkbox" className="checkbox-input" onChange={onDarkMode} />
               <label htmlFor="checkbox-input"></label>
             </div>
           </div>

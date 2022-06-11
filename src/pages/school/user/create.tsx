@@ -12,7 +12,7 @@ export default function CreatePage() {
 			<C.WrapperContent>
 			<div className="w-full p-1 h-screen bg-gray-100">
 				<C.CardBody>
-						<h3 style={{ fontSize: '1.8em', paddingTop: '2em' }}>Criação de conta para os usuários</h3>
+						<h3 style={{ fontSize: '1.8em', paddingTop: '0.5em' }}>Criação de conta para os usuários</h3>
 					</C.CardBody>
 
 					<CustomerCreateForm />

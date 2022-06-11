@@ -1,7 +1,8 @@
+
 const theme = {
   background: '#11172B',
   backgroundLight: '#f5f5f5',
-  backgroundBlue: '#013466', 
+  backgroundBlue: '#111', 
   greanButton: '#218838',
   primary: '#013466',
   secondary: '#7AC7E3',

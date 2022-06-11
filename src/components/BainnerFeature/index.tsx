@@ -5,6 +5,7 @@ import { GiMoneyStack } from 'react-icons/gi'
 import * as FaIcon from "react-icons/fa";
 import StickerCard from '../../components/Cards/StickerCard';
 import { formatMoney } from '@utils/use-price';
+import theme from 'src/styles/theme';
 
 const BainnerFeature: React.FC = () => {
 	return (
@@ -15,7 +16,7 @@ const BainnerFeature: React.FC = () => {
 				<StickerCard
 					title="Funcionários"
 					subtitle="Descei mais de"
-					icon={<FaIcon.FaRestroom/>}
+					icon={<FaIcon.FaRestroom color={theme.backgroundBlue}/>}
 					graphic={<AiOutlineArrowDown/>}
 					price={382}
 					status={"-20"}

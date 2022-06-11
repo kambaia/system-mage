@@ -5,16 +5,16 @@ import { InpuGroup } from '../Forms/styles';
 import { Card, CardBody } from '@components/common/card';
 import { AiOutlineUpload } from 'react-icons/ai';
 import { FormEvent, useContext, useState } from 'react';
-import { UploadImage, useEmployeeQuery } from '@data/user/use-me.query';
+import {  employQuery } from '@data/employee/employee-list';
 import { AuthContext } from '@contexts/AuthContext';
+import { UploadImage } from '@data/upload/upload';
+import Loader from '@components/ui/loader/loader';
+import ErrorMessage from '@components/ui/error-message';
 export const ListAllUserProfile = () => {
   const [uploading, setUploading] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, userId } = useContext(AuthContext);
   const [profile, setProfile] = useState<any>('');
-
-  const { data, isLoading} = useEmployeeQuery(user?.id);
-
-  console.log(data);
+  const { data, isLoading:loading, error} = employQuery(userId);
 
   const previewImage = async (e: any) => {
     const reader = new FileReader();
@@ -34,7 +34,7 @@ export const ListAllUserProfile = () => {
     let file = formData.get('profile') as File;
     if (file && file.size > 0) {
       setUploading(true);
-      const resp = await UploadImage(file);
+      const resp = await UploadImage(user?.email!, file);
       setUploading(true);
       if (resp instanceof Error) {
         alert(`${resp.message}`);
@@ -43,11 +43,10 @@ export const ListAllUserProfile = () => {
       }
     }
   };
-  if(isLoading){
-    (
-      <h2>Carregando</h2>
-    )
-  }
+
+	if (loading) return <Loader />;
+		if (error) return <ErrorMessage message={error.message} />;
+	
   return (
     <>
       <div className="w-full  py-2 bg-gray-100">
@@ -119,6 +118,7 @@ export const ListAllUserProfile = () => {
                   variant="outline"
                   className="mb-4 input"
                   value={data?.firstName}
+                
                 />
                 <Input
                   label="Sobre nome"

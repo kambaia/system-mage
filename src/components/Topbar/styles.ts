@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.nav`
+export const Container = styled.nav<{menu:boolean}>`
   position: fixed;
   z-index: 999;
   flex:1;
@@ -10,8 +10,8 @@ export const Container = styled.nav`
   padding: 20px 10px;
   padding-right: 30px;
   border-bottom: 1px solid #ddd;
-  width: calc(100% - 300px);
-  left: 300px;
+  width: ${p => p.menu? 'calc(100% - 300px)' : 'calc(100% - 80px)'};
+  left: ${p => p.menu? '300px': '80px'};
 
   @media(max-width:1024px) {
 	width: calc(100% - 0px);

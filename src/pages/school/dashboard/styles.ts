@@ -9,6 +9,8 @@ export const WrapperBody = styled.div`
   background-color: #fff;
   width: 99%;
 
+
+
   .table {
     -webkit-box-shadow: 0px 0px 11px -1px #ddd;
     box-shadow: 0px 0px 11px -1px #ddd;

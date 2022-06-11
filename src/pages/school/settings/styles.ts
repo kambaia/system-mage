@@ -17,6 +17,11 @@ export const WrapperContent = styled.div`
     .tab-item {
       display: flex;
       outline: none;
+
+      justify-content:space-between;
+      .menu-option-setting{
+        display:flex;
+      }
     }
     .item {
       display: flex;

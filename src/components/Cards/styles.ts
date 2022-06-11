@@ -27,8 +27,6 @@ export const FeatureContainer = styled.nav`
     align-items: center;
     justify-content: space-between;
 	width:100%;
-
-
     .icons {
       font-size: 3em;
 	  color: ${({ theme }) => theme.backgroundBlue};
