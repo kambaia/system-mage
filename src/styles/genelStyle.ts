@@ -8,7 +8,6 @@ export const WrapperContainer= styled.main`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 `
 
 export const Content= styled.main`

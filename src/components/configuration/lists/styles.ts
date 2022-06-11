@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const WrapperContent = styled.div`
-  width: 100%;
+  width: 99%;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -13,15 +13,12 @@ export const WrapperContent = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
     border-radius: 10px;
+
     .tab-item {
       display: flex;
       outline: none;
-
-      justify-content:space-between;
-      .menu-option-setting{
-        display:flex;
-      }
     }
     .item {
       display: flex;
@@ -30,10 +27,11 @@ export const WrapperContent = styled.div`
       outline: none;
       cursor: pointer;
       background-color: #fff;
-      border-left: 1px solid #fff;
-      border-bottom: 2px solid ${({ theme }) => theme.backgroundBlue};
+      background: #dee3e1;
+      color: ${({ theme }) => theme.backgroundBlue};
+
       a {
-        color:${({ theme }) => theme.backgroundBlue};
+        color: #555;
       }
     }
     .active {
@@ -41,11 +39,11 @@ export const WrapperContent = styled.div`
       outline: none;
       cursor: pointer;
       background-color: #fff;
+      border-bottom: 2px solid ${({ theme }) => theme.backgroundBlue};
       background: #fff;
-      background: ${({ theme }) => theme.backgroundBlue};
-      border-top-left-radius: 10px;
+	  border-top-left-radius: 10px;
       a {
-        color: #fff;
+        color: #555;
       }
     }
     .content {
@@ -74,7 +72,8 @@ export const WrapperBody = styled.div`
   }
 `;
 
-export const CardBody = styled.div`
+
+export const CardButton = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -82,8 +81,19 @@ export const CardBody = styled.div`
   justify-content: space-between;
   width: 100%;
   border-bottom: 2px solid ${({ theme }) => theme.backgroundBlue};
-  padding-bottom: 10px;
+  padding: 10px;
+ 
+  button {
+	background-color: ${({ theme }) => theme.backgroundBlue};
+	height: 40px;
+	opacity: 1;
+	:hover{
+		background-color: ${({ theme }) => theme.backgroundBlue};
+		opacity: 0.8;
+	}
+  }
 `;
+
 
 export const CardGroup = styled.div`
   margin: 0 auto;
@@ -92,17 +102,22 @@ export const CardGroup = styled.div`
   align-content: center;
   justify-content: flex-end;
   width: 100%;
-`;
-export const ModalSetting = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background-color: #f00;
-  z-index:1000;
-  width: 100%;
-  overflow-y:hidden;
 
+  .border {
+    border: none;
+	border: 1px solid #ddd;
+  }
 `;
+
+export const ContentTable = styled.div`
+	.user-profile{
+		width: 60px;
+		height: 60px;
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+`
 
 

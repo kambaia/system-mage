@@ -41,7 +41,7 @@ type FormValues = {
 	active: boolean,
 	schoolId: string,
 	userId: string,
-	
+
 }
 const defaultValues = {
 	id: "",
@@ -109,7 +109,7 @@ export const EmployeeCreateForm = () => {
 	const [searcUser, setSearcUser] = useState('');
 	const [userData, setUserData] = useState<FormValues>(defaultValues);
 	const [filterData, setFilterData] = useState<FormValues[]>();
-	
+
 	const { data, isLoading } = userSchoolListQuery(user?.school._id);
 	/***********************register user */
 	const router = useRouter();
@@ -450,15 +450,15 @@ export const EmployeeCreateForm = () => {
 										<InputError type={errors.employeeIdentity.type} field="employeeIdentity" />
 									)}
 									<GroupCard className="mb-5 mt-5 title">
-									<div className="mb-5 mt-5 title">
-										<h3>Posição </h3>
-									</div>
+										<div className="mb-5 mt-5 title">
+											<h3>Posição </h3>
+										</div>
 										<Select
 											options={options}
 											defaultValue={"Cargo do funcionario"}
 											className="mb-4"
 											placeholder='Entroduza aqui o número do BI do funcionário'
-											onChange={(e:any)=>{
+											onChange={(e: any) => {
 												setPosition(e.value);
 											}}
 										/>
@@ -473,7 +473,7 @@ export const EmployeeCreateForm = () => {
 										variant="outline"
 										className="mb-4"
 										{...register('email')}
-										
+
 									/>
 
 								</GroupCard>

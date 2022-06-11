@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.nav<{menu:boolean}>`
   position: fixed;
-  z-index: 999;
+  z-index: 1;
   flex:1;
   display: flex;
   justify-content: space-between;
