@@ -24,11 +24,9 @@ export default function Panel() {
 								<Tab className={`${router.query.settings === "2" ? 'item active' : 'item'}`}><Link as={'/school/settings/2'} href="/school/settings/2">Cursos</Link></Tab>
 								<Tab className={`${router.query.settings === "3" ? 'item active' : 'item'}`}><Link as={'/school/settings/3'} href="/school/settings/3">Turmas</Link></Tab>
 								<Tab className={`${router.query.settings === "4" ? 'item active' : 'item'}`}><Link as={'/school/settings/4'} href="/school/settings/4">Disciplinas</Link></Tab>
-
 							</div>
 							<div className="menu-option-setting">
-								<Tab className={`${router.query.settings === "1" ? 'item active' : 'item'}`} onClick={() => setOpenModal(true)} >Configurações de Pagamento</Tab>
-
+								<Tab className={`${router.query.settings === "5" ? 'conf active' : 'conf'}`} onClick={() => openModal} >Configurações de Pagamento</Tab>
 							</div>
 
 							{/* <Tab>Rascunhos</Tab> */}

@@ -1,13 +1,15 @@
 import Input from '../../ui/input';
 import Button from '../../ui/button';
 import { CardButton, CardGroup, ContentTable} from './styles';
-import Link from 'next/link';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { allEmployQuery } from '@data/employee/employee-list';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '@contexts/AuthContext';
 import Loader from '@components/ui/loader/loader';
+import { ModalGroup } from '../modals';
+import { UIContext } from '@contexts/ui.context';
 export const ListAllschoolGroupPanel = () => {
+  const { openModal } = useContext(UIContext);
   const { user } = useContext(AuthContext);
   const { data, isLoading } = allEmployQuery(user?.school._id!);
   return (
@@ -17,13 +19,8 @@ export const ListAllschoolGroupPanel = () => {
           <h3 style={{ fontSize: '1.5em', paddingTop: '2em' }}>
             Listam de Todos Turmas
           </h3>
-          <Button>
-            {' '}
-            <Link as={'/school/employee/create'} href="/school/employee/create">
-              <a>
-                <span className="title">Registrar</span>
-              </a>
-            </Link>
+          <Button onClick={openModal}>
+            Registrar Turma
           </Button>
         </CardButton>
         <div className="overflow-auto rounded-lg shadow hidden md:block">
@@ -46,12 +43,8 @@ export const ListAllschoolGroupPanel = () => {
                   Id
                 </th>
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
-                  Classe
+                  Turma
                 </th>
-                <th className="p-3 text-sm font-semibold tracking-wide text-left">
-                Proprina
-                </th>
-               
                 <th
                   colSpan={2}
                   className="w-20 m-5 text-center p-2 text-sm font-semibold tracking-wide text-center"
@@ -71,12 +64,10 @@ export const ListAllschoolGroupPanel = () => {
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
                       <span className="p-1.5 text-xs font-medium uppercase tracking-wide cursor-pointer">
-                      12º Classe
+                     GSI-A
                       </span>
                     </td>
-                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
-                    10.020.00 Kz
-                    </td>
+                  
                     <td style={{width:'20px'}} className="text-sm text-gray-700 whitespace-nowrap cursor-pointer">
                       <FiEdit />
                     </td>
@@ -164,6 +155,7 @@ export const ListAllschoolGroupPanel = () => {
           </div>
         </div>
       </div>
+      <ModalGroup/>
     </>
   );
 };

@@ -7,6 +7,7 @@ import GlobalStyles from '../styles/global';
 import theme from '../styles/theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AuthProvider } from '@contexts/AuthContext';
+import { UIProvider } from '@contexts/ui.context';
 import { Fragment, useRef } from 'react';
 function MyApp({ Component, pageProps }: any) {
   const queryClientRef = useRef<any>(null);
@@ -19,15 +20,17 @@ function MyApp({ Component, pageProps }: any) {
       <QueryClientProvider client={queryClientRef.current}>
         <ThemeProvider theme={theme}>
           <AuthProvider>
-            <NextNprogress
-              color={theme.primary}
-              startPosition={0.3}
-              stopDelayMs={200}
-              height={3}
-              showOnShallow
-            />
-            <Component {...pageProps} />
-            <GlobalStyles />
+            <UIProvider>
+              <NextNprogress
+                color={theme.primary}
+                startPosition={0.3}
+                stopDelayMs={200}
+                height={3}
+                showOnShallow
+              />
+              <Component {...pageProps} />
+              <GlobalStyles />
+            </UIProvider>
           </AuthProvider>
         </ThemeProvider>
       </QueryClientProvider>

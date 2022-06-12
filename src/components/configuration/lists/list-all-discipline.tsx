@@ -4,10 +4,13 @@ import { CardButton, CardGroup, ContentTable} from './styles';
 import Link from 'next/link';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { allEmployQuery } from '@data/employee/employee-list';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '@contexts/AuthContext';
 import Loader from '@components/ui/loader/loader';
+import { ModalDiscipline } from '../modals';
+import { UIContext } from '@contexts/ui.context';
 export const ListAllDisciplinePanel = () => {
+  const { openModal } = useContext(UIContext);
   const { user } = useContext(AuthContext);
   const { data, isLoading } = allEmployQuery(user?.school._id!);
   return (
@@ -17,13 +20,7 @@ export const ListAllDisciplinePanel = () => {
           <h3 style={{ fontSize: '1.5em', paddingTop: '2em' }}>
             Listam de Todos Disciplina
           </h3>
-          <Button>
-            {' '}
-            <Link as={'/school/employee/create'} href="/school/employee/create">
-              <a>
-                <span className="title">Registrar</span>
-              </a>
-            </Link>
+          <Button onClick={openModal}>Registrar Disciplina
           </Button>
         </CardButton>
         <div className="overflow-auto rounded-lg shadow hidden md:block">
@@ -46,10 +43,13 @@ export const ListAllDisciplinePanel = () => {
                   Id
                 </th>
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
-                  Classe
+                  Disciplina
                 </th>
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
-                Proprina
+                 Sigla
+                </th>
+                 <th className="p-3 w-40 text-sm font-semibold tracking-wide text-left">
+                  Ano Letivo
                 </th>
                
                 <th
@@ -71,11 +71,14 @@ export const ListAllDisciplinePanel = () => {
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
                       <span className="p-1.5 text-xs font-medium uppercase tracking-wide cursor-pointer">
-                      12º Classe
+                    Lingua Portuguesa
                       </span>
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
-                    10.020.00 Kz
+                   LP
+                    </td>
+                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
+                     2022
                     </td>
                     <td style={{width:'20px'}} className="text-sm text-gray-700 whitespace-nowrap cursor-pointer">
                       <FiEdit />
@@ -100,70 +103,28 @@ export const ListAllDisciplinePanel = () => {
                   1
                 </a>
               </div>
-              <div className="text-gray-500">Geral</div>
+              <div className="text-gray-500">Ano letivo</div>
               <div>
                 <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
-                  20-10-2022
+                  2022
                 </span>
               </div>
             </div>
             <div className="text-sm text-gray-700">
-              <span className="font-medium text-black">Nome</span>: Maria José
-              Alberto
+              <span className="font-medium text-black">Disciplina</span>
+              : Lingua Portuguesa
+             
             </div>
             <div className="text-sm">
-              <span className="font-medium text-black">Email</span>:
-              mariajose@gmail.com
+              <span className="font-medium text-black">Sigla</span>:
+             LP
             </div>
           </div>
-          <div className="bg-white space-y-3 p-4 rounded-lg shadow">
-            <div className="flex items-center space-x-2 text-sm">
-              <div>
-                <a href="#" className="text-blue-500 font-bold hover:underline">
-                  2
-                </a>
-              </div>
-              <div className="text-gray-500">Restrito</div>
-              <div>
-                <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
-                  16-10-2021
-                </span>
-              </div>
-            </div>
-            <div className="text-sm text-gray-700">
-              <span className="font-medium text-black">Nome</span>: Marculino
-              Fernando Abel
-            </div>
-            <div className="text-sm">
-              <span className="font-medium text-black">Email</span>:
-              Francisco@gmail.com
-            </div>
-          </div>
-          <div className="bg-white space-y-3 p-4 rounded-lg shadow">
-            <div className="flex items-center space-x-2 text-sm">
-              <div>
-                <a href="#" className="text-blue-500 font-bold hover:underline">
-                  3
-                </a>
-              </div>
-              <div className="text-gray-500">Restrito</div>
-              <div>
-                <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
-                  15-10-2021
-                </span>
-              </div>
-            </div>
-            <div className="text-sm text-gray-700">
-              <span className="font-medium text-black">Nome</span>: Mateus
-              Lucambo
-            </div>
-            <div className="text-sm">
-              <span className="font-medium text-black">Email</span>:
-              mateuslucambo@gmail.com
-            </div>
-          </div>
+         
         </div>
       </div>
+
+      <ModalDiscipline/>
     </>
   );
 };

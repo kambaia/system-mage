@@ -4,10 +4,13 @@ import { CardButton, CardGroup, ContentTable} from './styles';
 import Link from 'next/link';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { allEmployQuery } from '@data/employee/employee-list';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '@contexts/AuthContext';
 import Loader from '@components/ui/loader/loader';
+import { ModalClass} from '../modals';
+import { UIContext } from '@contexts/ui.context';
 export const ListAllClassePanel = () => {
+  const {openModal} = useContext(UIContext);
   const { user } = useContext(AuthContext);
   const { data, isLoading } = allEmployQuery(user?.school._id!);
   return (
@@ -17,13 +20,8 @@ export const ListAllClassePanel = () => {
           <h3 style={{ fontSize: '1.5em', paddingTop: '2em' }}>
             Listam de Todos Classes
           </h3>
-          <Button>
-            {' '}
-            <Link as={'/school/employee/create'} href="/school/employee/create">
-              <a>
-                <span className="title">Registrar</span>
-              </a>
-            </Link>
+          <Button onClick={openModal}>
+            Registrar Classe
           </Button>
         </CardButton>
         <div className="overflow-auto rounded-lg shadow hidden md:block">
@@ -164,6 +162,7 @@ export const ListAllClassePanel = () => {
           </div>
         </div>
       </div>
+          <ModalClass/>
     </>
   );
 };

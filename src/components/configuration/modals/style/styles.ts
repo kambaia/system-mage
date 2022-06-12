@@ -13,7 +13,7 @@ export const Container = styled.section`
   }
   
   .modalContainer {
-    max-width: 900px;
+    max-width: 600px;
     width: 100%;
     position: fixed;
     margin: auto;
@@ -42,10 +42,6 @@ export const Container = styled.section`
     position: fixed;
     top: 8px;
     right: 8px;
-    cursor: pointer;
-    :hover{
-      opacity: .5;
-    }
   }
   
   .content {
@@ -58,6 +54,13 @@ export const Container = styled.section`
     padding: 1rem 1rem;
     margin-bottom: 2rem;
   }
+  .group{
+    padding-top: 10px;
+    .legend{
+      padding-top: 10px;
+      font-size: 14pt;
+    }
+  }
   .header-modal{
     padding: 1rem 0rem;
     h3{
@@ -65,6 +68,9 @@ export const Container = styled.section`
       padding: 1rem 0rem;
       font-size: 1.2em;
     }
+  }
+  .closeBtn{
+    cursor: pointer;
   }
   .btnContainer {
     display: flex;
@@ -132,3 +138,4 @@ opacity: 1;
 }
 }
 `;
+

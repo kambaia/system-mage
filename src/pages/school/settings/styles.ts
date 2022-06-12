@@ -14,6 +14,7 @@ export const WrapperContent = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    box-shadow: 0px 0px px ${({ theme }) => theme.backgroundBlue};
     .tab-item {
       display: flex;
       outline: none;
@@ -21,7 +22,18 @@ export const WrapperContent = styled.div`
       justify-content:space-between;
       .menu-option-setting{
         display:flex;
+        
       }
+    }
+    .conf{
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      outline: none;
+      cursor: pointer;
+      background-color: #fff;
+      border: 2px solid ${({ theme }) => theme.backgroundBlue};
+      border-radius: 5px;
     }
     .item {
       display: flex;
@@ -54,6 +66,7 @@ export const WrapperContent = styled.div`
       overflow-x: hidden;
       width: 98%;
       margin: auto;
+      
     }
   }
 `;
@@ -81,7 +94,6 @@ export const CardBody = styled.div`
   align-content: center;
   justify-content: space-between;
   width: 100%;
-  border-bottom: 2px solid ${({ theme }) => theme.backgroundBlue};
   padding-bottom: 10px;
 `;
 

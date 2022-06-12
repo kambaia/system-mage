@@ -98,12 +98,15 @@ export const UIProvider: FC = (props) => {
 
   const openSidebar = () => dispatch({ type: "OPEN_SIDEBAR" });
   const closeSidebar = () => dispatch({ type: "CLOSE_SIDEBAR" });
+ 
   const toggleSidebar = () =>
     state.displaySidebar
       ? dispatch({ type: "CLOSE_SIDEBAR" })
       : dispatch({ type: "OPEN_SIDEBAR" });
+      
   const closeSidebarIfPresent = () =>
     state.displaySidebar && dispatch({ type: "CLOSE_SIDEBAR" });
+
 
   const openModal = () => dispatch({ type: "OPEN_MODAL" });
   const closeModal = () => dispatch({ type: "CLOSE_MODAL" });
