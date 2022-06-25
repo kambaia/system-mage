@@ -9,7 +9,7 @@ import { AuthContext } from '@contexts/AuthContext';
 import Loader from '@components/ui/loader/loader';
 import { ModalClass} from '../modals';
 import { UIContext } from '@contexts/ui.context';
-export const ListAllClassePanel = () => {
+export const ListAllClassPanel = () => {
   const {openModal} = useContext(UIContext);
   const { user } = useContext(AuthContext);
   const { data, isLoading } = allEmployQuery(user?.school._id!);
@@ -87,6 +87,7 @@ export const ListAllClassePanel = () => {
               
             </tbody>
           </table>
+         
 		  </ContentTable>
         </div>
 
