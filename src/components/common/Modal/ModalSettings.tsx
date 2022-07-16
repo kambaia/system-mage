@@ -2,7 +2,7 @@ import { InpuGroup } from '@components/customer/Forms/styles';
 import Button from '@components/ui/button';
 import Input from '@components/ui/input';
 import Select from '@components/ui/select/select';
-import React, { useContext, useState } from 'react';
+import React, {useState } from 'react';
 import { CardButton, Container } from './style/styles';
 
 type ModalType = {

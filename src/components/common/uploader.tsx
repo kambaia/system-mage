@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Attachment } from "@ts-types/generated";
-import Loader from "@components/ui/loader/loader";
 import { AiOutlineUpload } from 'react-icons/ai';
 import styled from "styled-components";
 type Props = {

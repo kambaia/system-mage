@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CardButton, Container } from './style/styles';
+import {Container } from './style/styles';
 
 type ModalType = {
   open: boolean;

@@ -6,7 +6,6 @@ import { FaBook } from "react-icons/fa"
 import { motion } from "framer-motion";
 import DrawerWrapper from "@components/ui/drawer-wrapper";
 import SidebarMenu from "@components/ui/sidebar-menu";
-import { ROUTES } from "@utils/routes";
 const Navbar = () => {
   const { toggleSidebar, displaySidebar, closeSidebar } = useUI();
 

@@ -1,8 +1,4 @@
 import SidebarMenu from "@components/ui/sidebar-menu";
-import { useMeQuery } from "@data/user/use-me.query";
-import { ROUTES } from "@utils/routes";
-
-
 const Sidebar = () => {
 
   return (
