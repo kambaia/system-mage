@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useMemo } from "react";
 export interface State {
   displaySidebar: boolean;
   displayModal: boolean;
