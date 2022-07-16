@@ -1,7 +1,6 @@
-import React from 'react'
-import { FeatureContainer } from './styles'
-import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
-import { GiMoneyStack } from 'react-icons/gi'
+import React from 'react';
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
+import { GiMoneyStack } from 'react-icons/gi';
 import * as FaIcon from "react-icons/fa";
 import StickerCard from '../../components/Cards/StickerCard';
 import { formatMoney } from '@utils/use-price';
