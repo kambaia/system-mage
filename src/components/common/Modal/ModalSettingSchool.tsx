@@ -6,7 +6,7 @@ type ModalType = {
   onClose: (value: boolean) => void;
 }
 const Modal = ({ open, onClose }: ModalType) => {
-  const [panel, setPanel] = useState("app-setting");
+  //const [panel, setPanel] = useState("app-setting");
   if (!open) return null;
   return (
     <Container>
