@@ -12,7 +12,6 @@ import { UIContext } from '@contexts/ui.context';
 export const ListAllClassPanel = () => {
   const {openModal} = useContext(UIContext);
   const { user } = useContext(AuthContext);
-  const { data, isLoading } = allEmployQuery(user?.school._id!);
   return (
     <>
       <div className="w-full p-1 h-screen bg-gray-100">

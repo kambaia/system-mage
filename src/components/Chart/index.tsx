@@ -1,13 +1,10 @@
 import React from 'react';
-import * as C from './styles';
 import {
   LineChart,
   Line,
   XAxis,
-  YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer
 } from 'recharts';
 

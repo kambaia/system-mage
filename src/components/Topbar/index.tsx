@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import * as C from './styles';
 import { CgMenu } from 'react-icons/cg';
 import { FaBell, FaEnvelopeOpenText } from 'react-icons/fa';
@@ -8,7 +8,7 @@ import Loader from '@components/ui/loader/loader';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { AuthContext } from '@contexts/AuthContext';
-import { useUI } from '@contexts/ui.context';
+//import { useUI } from '@contexts/ui.context';
 export const TopBar = () => {
   const router = useRouter();
   const { user, menu, onSidebarMenu } = useContext(AuthContext);

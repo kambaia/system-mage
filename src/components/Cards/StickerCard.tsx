@@ -1,8 +1,4 @@
-import { formatMoney } from "@utils/use-price";
-import React from "react";
 import { FeatureContainer } from "./styles";
-
-
 const StickerCard = ({
 	title,
 	classIcon,
@@ -10,11 +6,7 @@ const StickerCard = ({
 	icon,
 	graphic,
 	price,
-	status,
-	indicatorText,
-	note,
-	link,
-	linkText,
+	status
 }: any) => {
 	return (
 		<div className="flex flex-col w-full h-full p-7 rounded bg-white shadow">

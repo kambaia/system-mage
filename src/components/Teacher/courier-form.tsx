@@ -8,7 +8,7 @@ import { getErrorMessage } from "@utils/form-error";
 import { useCreateCourierMutation } from "@data/courier/use-courier-create.mutation";
 import { useUpdateCourierMutation } from "@data/courier/use-courier-update.mutation";
 import { Courier } from "@ts-types/generated";
-import TextArea from "@components/ui/text-area";
+//import TextArea from "@components/ui/text-area";
 import FileInput from "@components/ui/file-input";
 
 type FormValues = {
