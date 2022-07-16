@@ -1,7 +1,7 @@
 
 import { TopBar } from "./../components/Topbar";
 import { SideBar } from "./../components/SideBar";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "@contexts/AuthContext";
 import { MainContent } from "src/styles/genelStyle";
 import { Footer } from "@components/Footer/Footer";
