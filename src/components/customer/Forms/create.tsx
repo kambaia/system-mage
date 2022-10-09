@@ -65,6 +65,7 @@ export const CustomerCreateForm = () => {
 		defaultValues,
 		resolver: yupResolver(validationSchema)
 	});
+	
 	const options= data
 	const { user } = useContext(AuthContext);
 	const [profileSave, setProfileSave] = useState<File | null>(null);

@@ -3,7 +3,7 @@ import {CustomerCreateForm} from "@components/customer/Forms";
 import * as C from "./styles";
 import { parseContextCookie } from '@utils/parse-cookie';
 import { GetServerSideProps } from 'next';
-import { isTokenExpired } from 'src/util/auth';
+import { isTokenExpired } from 'src/helper/auth';
 import { ROUTES } from '@utils/routes';
 import { SUPER_ADMIN } from '@utils/constants';
 export default function CreatePage() {

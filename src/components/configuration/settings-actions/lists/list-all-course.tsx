@@ -1,26 +1,26 @@
-import Input from '../../ui/input';
-import Button from '../../ui/button';
-import { CardButton, CardGroup, ContentTable} from './styles';
+import Input from '../../../ui/input';
+import Button from '../../../ui/button';
+import { CardButton, CardGroup, ContentTable } from './styles';
 import Link from 'next/link';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { allEmployQuery } from '@data/employee/employee-list';
-import { useContext, useState } from 'react';
+import { useContext} from 'react';
 import { AuthContext } from '@contexts/AuthContext';
 import Loader from '@components/ui/loader/loader';
-import { ModalClass} from '../modals';
+import { ModalCourse } from '../../modals';
 import { UIContext } from '@contexts/ui.context';
-export const ListAllClassPanel = () => {
+export const ListAllCoursePanel = () => {
   const {openModal} = useContext(UIContext);
   const { user } = useContext(AuthContext);
+  const {isLoading } = allEmployQuery(user?.school._id!);
   return (
     <>
       <div className="w-full p-1 h-screen bg-gray-100">
         <CardButton>
           <h3 style={{ fontSize: '1.5em', paddingTop: '2em' }}>
-            Listam de Todos Classes
+            Listam de Todos Cursos
           </h3>
-          <Button onClick={openModal}>
-            Registrar Classe
+          <Button onClick={openModal}>Registrar Curso
           </Button>
         </CardButton>
         <div className="overflow-auto rounded-lg shadow hidden md:block">
@@ -35,59 +35,58 @@ export const ListAllClassPanel = () => {
         </div>
 
         <div className="overflow-auto rounded-lg shadow hidden md:block">
-		<ContentTable>
-          <table className="w-full border-collapse border border-slate-400">
-            <thead className="bg-gray-50 border-b-2 ">
-              <tr>
-                <th className="w-20 p-3 text-sm font-semibold tracking-wide text-left">
-                  Id
-                </th>
-                <th className="p-3 text-sm font-semibold tracking-wide text-left">
-                  Classe
-                </th>
-                <th className="p-3 text-sm font-semibold tracking-wide text-left">
-                Proprina
-                </th>
-               
-                <th
-                  colSpan={2}
-                  className="w-20 m-5 text-center p-2 text-sm font-semibold tracking-wide text-center"
-                >
-                  Ações
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {isLoading ? (
-                <Loader />
-              ) : (
+          <ContentTable>
+            <table className="w-full border-collapse border border-slate-400">
+              <thead className="bg-gray-50 border-b-2 ">
+                <tr>
+                  <th className="w-20 p-3 text-sm font-semibold tracking-wide text-left">
+                    Id
+                  </th>
+                  <th className="p-3 text-sm font-semibold tracking-wide text-left">
+                    Curso
+                  </th>
+                  <th className="p-3 text-sm font-semibold tracking-wide text-left">
+                    Sigla
+                  </th>
+
+                  <th
+                    colSpan={2}
+                    className="w-20 m-5 text-center p-2 text-sm font-semibold tracking-wide text-center"
+                  >
+                    Ações
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {isLoading ? (
+                  <Loader />
+                ) : (
                   <tr className="bg-white border-btransition duration-300 ease-in-out hover:bg-gray-100">
-                   
+
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
-                       1
+                      1
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
                       <span className="p-1.5 text-xs font-medium uppercase tracking-wide cursor-pointer">
-                      12º Classe
+                        Curso de Gestão de Sistemas Informático
                       </span>
                     </td>
                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
-                    10.020.00 Kz
+                      GSI
                     </td>
-                    <td style={{width:'20px'}} className="text-sm text-gray-700 whitespace-nowrap cursor-pointer">
+                    <td style={{ width: '20px' }} className="text-sm text-gray-700 whitespace-nowrap cursor-pointer">
                       <FiEdit />
                     </td>
-                    <td  style={{width:'20px'}} className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
+                    <td style={{ width: '20px' }} className="p-3 text-sm text-gray-700 whitespace-nowrap cursor-pointer">
                       <FiTrash2 />
                     </td>
                   </tr>
                 )
-              }
-              
-            </tbody>
-          </table>
-         
-		  </ContentTable>
+                }
+
+              </tbody>
+            </table>
+          </ContentTable>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
@@ -162,7 +161,7 @@ export const ListAllClassPanel = () => {
           </div>
         </div>
       </div>
-          <ModalClass/>
-    </>
+      <ModalCourse/>
+		</>
   );
 };

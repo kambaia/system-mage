@@ -1,5 +1,5 @@
 import { parseContextCookie } from "@utils/parse-cookie";
-import { getPayload, isTokenExpired } from "src/util/auth";
+import { getPayload, isTokenExpired } from "src/helper/auth";
 
 export function withAuth(func: any) {
   return async (ctx: any) => {

@@ -1,5 +1,5 @@
-import { getPayload, isTokenExpired } from '../util/auth';
-import { parseCookies } from '../util/cookies';
+import { getPayload, isTokenExpired } from '../helper/auth';
+import { parseCookies } from '../helper/cookies';
 
 export function withAuth(func: any) {
   return async (ctx: any) => {

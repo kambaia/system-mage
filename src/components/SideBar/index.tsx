@@ -95,25 +95,21 @@ export const SideBar: React.FC<{}> = () => {
               </Link>
             </li>
 
-            <li className={asPath === ROUTES.REGISTRATIONANROL ? 'active' : ''}>
-              <Link href={ROUTES.REGISTRATIONANROL}>
+            <li>
                 <a>
                   <span className="icon">
                     <FaIcon.FaIdCard className="color-icon" />
                   </span>
                   <span className="title">Matriculas</span>
                 </a>
-              </Link>
             </li>
-            <li className={asPath === ROUTES.REGISTRATIONANROL ? 'active' : ''}>
-              <Link href={ROUTES.REGISTRATIONANROL}>
+            <li>
                 <a>
                   <span className="icon">
                     <MdIcon.MdPayments className="color-icon" />
                   </span>
                   <span className="title">Plano de Aulas</span>
                 </a>
-              </Link>
             </li>
 
             <li>

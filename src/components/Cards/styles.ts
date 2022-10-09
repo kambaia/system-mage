@@ -48,7 +48,6 @@ export const FeatureContainer = styled.nav`
 
   .percentage {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 	.feature-sub{
 		  font-size: 10pt;
@@ -63,10 +62,17 @@ export const FeatureContainer = styled.nav`
         margin-left: 5px;
       }
       .icon-decrease {
-        color: red;
+        color: #555;
         font-size: 1em;
         margin-left: 5px;
       }
+      .icon-left{
+        margin-left:20px;
+      }
     }
+  }
+
+  .card-menu{
+    background-color: #f00;
   }
 `;

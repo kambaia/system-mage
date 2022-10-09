@@ -11,7 +11,7 @@ import { ROUTES } from '@utils/routes';
 import {SUPER_ADMIN } from '@utils/constants';
 import { GetServerSideProps } from "next";
 import { parseContextCookie } from "@utils/parse-cookie";
-import { isTokenExpired } from 'src/util/auth';
+import { isTokenExpired } from 'src/helper/auth';
 import { AuthContext } from '@contexts/AuthContext';
 import Loader from '@components/ui/loader/loader';
 import ErrorMessage from '@components/ui/error-message';

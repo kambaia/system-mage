@@ -6,7 +6,7 @@ import { ROUTES } from '@utils/routes';
 import { SUPER_ADMIN } from '@utils/constants';
 import { GetServerSideProps } from "next";
 import { parseContextCookie } from "@utils/parse-cookie";
-import { isTokenExpired } from 'src/util/auth';
+import { isTokenExpired } from 'src/helper/auth';
 import { parseCookies } from 'nookies';
 export default function Home() {
 	useEffect(() => {

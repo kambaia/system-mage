@@ -30,6 +30,12 @@ export declare type UserAddress = {
 	neighborhood: Scalars["String"];
 };
 
+export declare type AcademicPropos = {
+    description: string;
+    startYear: number;
+    endYear: number;
+
+}
 
 
 export declare type IUser = {

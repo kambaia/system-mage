@@ -118,3 +118,31 @@ export const ModalSetting = styled.div`
 `;
 
 
+export const MenuBodyOption = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height:80vh;
+  align-items: center;
+
+  .card{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-wrap: wrap;
+
+
+    .card-menu{
+      cursor: pointer;
+      margin: 10px;
+      width: 22%;
+      height: 180px;
+    }
+  }
+  
+`;
+
+
+

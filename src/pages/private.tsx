@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { withAuth } from "../hof/withAuth";
-import { http } from "../util/http";
+import { http } from "../helper/http";
 
 interface PrivatePageProps {
   name: string;

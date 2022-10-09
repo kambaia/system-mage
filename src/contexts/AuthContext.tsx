@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { getCookie } from '../util/cookies';
+import { getCookie } from '../helper/cookies';
 import { setCookie } from 'nookies';
 import { useRouter } from 'next/router';
 import { recoverUserInformation } from '@data/user/use-me.query';

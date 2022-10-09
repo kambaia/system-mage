@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { URL_ACESS, URL_ACESS_SCHOOL } from "../utils/endpoints";
-import { http } from "..//util/http";
+import { http } from "../helper/http";
 export function signInRequest(email: string, password: string) {
   return new Promise(async function (resolve, reject) {
     try {
