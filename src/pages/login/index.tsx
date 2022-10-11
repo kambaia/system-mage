@@ -28,6 +28,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<FormValues>({
     defaultValues
@@ -99,7 +100,7 @@ export default function Login() {
               </div>
             </div>
             <div className="b-create-count">
-              <button>Criar nova conta</button>
+              <button onClick={() => reset()}>Criar nova conta</button>
             </div>
           </form>
         </div>

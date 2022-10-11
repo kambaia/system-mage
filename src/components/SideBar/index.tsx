@@ -19,8 +19,7 @@ export const SideBar: React.FC<{}> = () => {
       onSetTheme('light');
      }
   }
-
-
+  
   return (
     <aside
       
